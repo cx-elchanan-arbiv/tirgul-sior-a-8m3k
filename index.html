@@ -1,0 +1,1124 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<title>תרגול סיור שלב א׳</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@500;700;900&family=Heebo:wght@300;400;500;700;900&display=swap">
+<style>
+/* פריסה: פס כותרת כחול־כהה, לשוניות של 4 ימים (אחד לכל מפגש), בכל יום שני חלקים: סיכום (כולל מלכודות ומספרים) ← מבחן אמריקאי (כולל תרחישים). תוספות אחרי ההערה במסגרת אדומה. סרגל ציון קבוע בתחתית */
+:root{
+  --ground:#EEF1F5; --paper:#FFFFFF; --ink:#101822; --ink-2:#3C4A5C; --ink-3:#6B7A8D;
+  --line:#D3DBE5; --line-soft:#E4EAF1; --navy:#12253F; --mast:#12253F; --mast-ink:#EEF3FA; --mast-2:#B9CCE4; --mast-3:#8FB2DC;
+  --blue:#1A5CA8; --blue-soft:#E7EFF9;
+  --crit:#A8321C; --crit-soft:#FBEAE5; --warm:#8A6A18; --warm-soft:#FAF1DC;
+  --good:#26674B; --good-soft:#E4F0EA;
+  --add:#D2394A; --add-soft:#FFF4F5;
+  --display:"Frank Ruhl Libre",Georgia,"Times New Roman",serif;
+  --body:"Heebo","Segoe UI",system-ui,-apple-system,sans-serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --ground:#0C1219; --paper:#141C26; --ink:#E8EDF3; --ink-2:#B3BECC; --ink-3:#84919F;
+  --line:#28333F; --line-soft:#1E2833; --navy:#9FC0E8; --mast:#0A1220; --mast-ink:#EEF3FA; --mast-2:#B9CCE4; --mast-3:#8FB2DC;
+  --blue:#6EA8E8; --blue-soft:#152539;
+  --crit:#E8907A; --crit-soft:#2C1913; --warm:#D6B563; --warm-soft:#2A2214;
+  --good:#7FC3A2; --good-soft:#132420;
+  --add:#F07A86; --add-soft:#261418; color-scheme:dark;
+}}
+:root[data-theme="dark"]{
+  --ground:#0C1219; --paper:#141C26; --ink:#E8EDF3; --ink-2:#B3BECC; --ink-3:#84919F;
+  --line:#28333F; --line-soft:#1E2833; --navy:#9FC0E8; --mast:#0A1220; --mast-ink:#EEF3FA; --mast-2:#B9CCE4; --mast-3:#8FB2DC;
+  --blue:#6EA8E8; --blue-soft:#152539;
+  --crit:#E8907A; --crit-soft:#2C1913; --warm:#D6B563; --warm-soft:#2A2214;
+  --good:#7FC3A2; --good-soft:#132420;
+  --add:#F07A86; --add-soft:#261418; color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{direction:rtl}
+body{background:var(--ground);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.62;margin:0;-webkit-font-smoothing:antialiased}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:30;background:var(--ground)}
+.wrap{max-width:860px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+main.wrap{padding-block:0 150px}
+
+.mast{background:var(--mast);color:var(--mast-ink);padding-block:34px 26px;border-bottom:3px solid var(--blue)}
+.eyebrow{font-size:12px;letter-spacing:.08em;color:var(--mast-3);font-weight:700;margin:0 0 10px}
+.mast h1{font-family:var(--display);font-weight:900;font-size:clamp(28px,5.4vw,44px);line-height:1.12;margin:0 0 12px;color:#fff;text-wrap:balance}
+.mast p{margin:0;color:var(--mast-2);max-width:62ch;font-size:15.5px}
+.facts{display:flex;flex-wrap:wrap;gap:10px 28px;margin-top:20px;padding-top:16px;border-top:1px solid rgba(255,255,255,.14)}
+.facts div{font-size:12.5px;color:var(--mast-3)}
+.facts b{display:block;color:#fff;font-size:15.5px;font-weight:700;font-variant-numeric:tabular-nums}
+
+/* לשוניות החלקים */
+nav.tabs{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:color-mix(in srgb,var(--ground) 92%,transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--line);margin:0 0 26px}
+nav.tabs .row{max-width:860px;margin:0 auto;padding-block:8px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}
+.tab{all:unset;box-sizing:border-box;cursor:pointer;text-align:center;padding:7px 6px;border-radius:6px;border:1px solid var(--line);background:var(--paper);font-family:var(--body);min-width:0}
+.tab .tn{display:block;font-family:var(--display);font-weight:900;font-size:16px;color:var(--navy);line-height:1.1}
+.tab .tt{display:block;font-size:11.5px;color:var(--ink-3);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tab:hover{background:var(--blue-soft)}
+.tab:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+.tab[aria-selected="true"]{background:var(--navy);border-color:var(--navy)}
+.tab[aria-selected="true"] .tn{color:var(--paper)}
+.tab[aria-selected="true"] .tt{color:var(--paper);opacity:.8}
+
+.lead{background:var(--warm-soft);border-inline-start:3px solid var(--warm);padding:13px 17px;border-radius:0 4px 4px 0;margin:0 0 30px;font-size:14.5px}
+.lead p{margin:0 0 6px;max-width:none}
+.lead p:last-child{margin:0}
+.lead b{color:var(--warm)}
+.lead .addsample{color:var(--add);font-weight:700;border:1.5px solid var(--add);border-radius:4px;padding:0 6px;background:var(--add-soft)}
+
+/* ראש חלק */
+section.part{scroll-margin-top:80px}
+section.part{scroll-margin-top:80px}
+.phead{margin:6px 0 6px;scroll-margin-top:90px}
+.phead .pk{display:inline-block;font-family:var(--display);font-weight:900;font-size:13px;color:var(--paper);background:var(--navy);padding:3px 10px;border-radius:3px;margin-bottom:8px}
+.phead h2{font-family:var(--display);font-weight:900;font-size:clamp(25px,4.4vw,34px);margin:0;line-height:1.15;text-wrap:balance}
+.topics{font-size:13px;color:var(--ink-3);margin:6px 0 12px}
+.pnav{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 26px;padding:0;list-style:none}
+.pnav a{display:block;font-size:13px;font-weight:700;color:var(--blue);text-decoration:none;padding:4px 12px;border-radius:99px;border:1px solid var(--line);background:var(--paper)}
+.pnav a:hover{background:var(--blue-soft)}
+.pnav a:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+.sec-title{font-family:var(--display);font-weight:900;font-size:clamp(21px,3.4vw,26px);margin:40px 0 14px;padding-bottom:7px;border-bottom:2px solid var(--ink);scroll-margin-top:90px;display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.sec-title .cnt{font-family:var(--body);font-size:12px;font-weight:700;color:var(--ink-3);background:var(--line-soft);padding:3px 9px;border-radius:3px;white-space:nowrap;font-variant-numeric:tabular-nums}
+
+h3.tp{font-family:var(--display);font-weight:700;font-size:20px;margin:30px 0 10px;line-height:1.25;color:var(--navy);text-wrap:balance}
+h4{font-family:var(--display);font-weight:700;font-size:17px;margin:20px 0 8px;line-height:1.3}
+h3.tp.sub{margin-top:34px;padding-top:14px;border-top:1px dashed var(--line);scroll-margin-top:90px}
+p{margin:0 0 11px;max-width:68ch}
+ul,ol{margin:0 0 14px;padding-inline-start:1.2em;max-width:68ch}
+li{margin-bottom:6px;font-size:15px}
+li::marker{color:var(--blue)}
+b,strong{font-weight:700}
+.key{border-inline-start:3px solid var(--crit);background:var(--crit-soft);padding:12px 16px;border-radius:0 4px 4px 0;margin:0 0 16px;font-size:14.5px}
+.key p{margin:0 0 6px;max-width:none}
+.key p:last-child{margin:0}
+.key b{color:var(--crit)}
+.note{border-inline-start:3px solid var(--blue);background:var(--blue-soft);padding:12px 16px;border-radius:0 4px 4px 0;margin:0 0 16px;font-size:14.5px}
+.note p{margin:0 0 6px;max-width:none}
+.note p:last-child{margin:0}
+
+/* תוספות אחרי ההערה */
+.add:not(.qi){margin:0 0 16px}
+
+.add h4{margin-top:4px}
+.add .tw{background:var(--paper)}
+.chip-add{display:inline-block;font-size:11px;font-weight:700;color:var(--add);border:1px solid var(--add);border-radius:99px;padding:0 8px;margin-inline-start:6px;vertical-align:2px;background:var(--paper);white-space:nowrap}
+
+.tw{overflow-x:auto;margin:0 0 16px;border:1px solid var(--line);border-radius:4px;background:var(--paper)}
+table{border-collapse:collapse;width:100%;font-size:14px;min-width:440px}
+th,td{padding:9px 12px;text-align:start;border-bottom:1px solid var(--line-soft);vertical-align:top}
+thead th{background:var(--line-soft);font-size:12.5px;color:var(--ink-2);font-weight:700;white-space:nowrap}
+tbody tr:last-child td{border-bottom:none}
+td.num{font-variant-numeric:tabular-nums;white-space:nowrap;font-weight:700;color:var(--navy)}
+
+.traps{display:grid;gap:9px;margin:0 0 14px}
+.trap{background:var(--paper);border:1px solid var(--line);border-radius:4px;overflow:hidden;display:grid;grid-template-columns:36px 1fr}
+.trap .tn{background:var(--crit);color:#fff;font-family:var(--display);font-weight:900;font-size:16px;display:grid;place-items:center;font-variant-numeric:tabular-nums}
+.trap .tb{padding:11px 15px;min-width:0}
+.trap .bad{color:var(--crit);font-weight:700;font-size:14.5px;margin:0 0 5px;max-width:none}
+.trap .good{font-size:14.5px;margin:0;max-width:none}
+
+/* שאלות */
+.qi{background:var(--paper);border:1px solid var(--line);border-radius:5px;padding:14px 16px;margin:0 0 11px}
+
+.qi.right{border-color:var(--good)}
+.qi.wrong{border-color:var(--crit)}
+.qh{display:grid;grid-template-columns:34px 1fr;gap:6px;margin:0 0 10px}
+.qh .qn{font-family:var(--display);font-weight:900;color:var(--blue);font-variant-numeric:tabular-nums;font-size:15px;padding-top:1px}
+.qh .qt{font-weight:500;font-size:15.5px;margin:0;max-width:none;min-width:0}
+.opts{display:grid;gap:6px;margin:0 0 10px;padding-inline-start:40px}
+.opt{all:unset;box-sizing:border-box;display:grid;grid-template-columns:22px 1fr;gap:6px;align-items:start;width:100%;font-family:var(--body);font-size:14.5px;line-height:1.5;color:var(--ink);padding:7px 11px;border:1px solid var(--line);border-radius:4px;background:var(--paper);cursor:pointer;text-align:start}
+.opt:hover{background:var(--blue-soft);border-color:var(--blue)}
+.opt:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+.opt .l{font-weight:700;color:var(--ink-3)}
+.opt .t{min-width:0}
+.qi.done .opt{cursor:default}
+.qi.done .opt:hover{background:var(--paper);border-color:var(--line)}
+.qi.done .opt.is-right,.qi.done .opt.is-right:hover{background:var(--good-soft);border-color:var(--good)}
+.qi.done .opt.is-right .l{color:var(--good)}
+.qi.done .opt.picked-wrong,.qi.done .opt.picked-wrong:hover{background:var(--crit-soft);border-color:var(--crit)}
+.qi.done .opt.picked-wrong .l{color:var(--crit)}
+.qi details{padding-inline-start:40px}
+details summary{cursor:pointer;font-size:12.5px;font-weight:700;color:var(--blue);list-style:none;display:inline-block;padding:3px 11px;border:1px solid var(--line);border-radius:99px;background:var(--paper)}
+details summary::-webkit-details-marker{display:none}
+details summary:hover{background:var(--blue-soft)}
+details summary:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+details[open] summary{margin-bottom:8px}
+.ans{background:var(--good-soft);border-inline-start:3px solid var(--good);padding:10px 14px;border-radius:0 4px 4px 0;font-size:14.5px}
+.ans p{margin:0;max-width:none}
+.ans .c{font-weight:700;color:var(--good)}
+.ans .why{display:block;margin-top:5px;color:var(--ink-2);font-size:14px}
+.ans .why b{color:var(--ink)}
+
+.case{border:1px solid var(--warm);border-inline-start:4px solid var(--warm);border-radius:0 5px 5px 0;background:var(--warm-soft);padding:15px 18px;margin:0 0 16px}
+.case .ct{font-size:12px;letter-spacing:.06em;color:var(--warm);font-weight:700;margin:0 0 6px}
+.case h4{margin:0 0 8px;font-size:18px}
+.case p{font-size:14.5px;margin:0 0 9px;max-width:none}
+.case .cq{font-weight:700;font-size:15px;margin:12px 0 9px;padding-top:10px;border-top:1px solid var(--line)}
+
+/* מצבי סינון */
+body.only-wrong .qi:not(.wrong){display:none}
+body.only-add .sumbody > :not(.add){display:none}
+body.only-add .qi:not(.add){display:none}
+body.only-add .case:not(.add){display:none}
+
+.scorebar{position:fixed;inset:auto 0 0 0;z-index:25;background:var(--paper);border-top:1px solid var(--line);box-shadow:0 -6px 18px -12px rgba(16,24,34,.35);padding-bottom:env(safe-area-inset-bottom,0px)}
+.scorebar .in{max-width:860px;margin:0 auto;padding-block:8px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:flex;flex-wrap:wrap;align-items:center;gap:6px 12px}
+.scorebar .st{flex:1;min-width:0;font-size:13.5px;color:var(--ink-2);font-variant-numeric:tabular-nums;line-height:1.35}
+.scorebar .st b{color:var(--ink)}
+.scorebar .st small{display:block;font-size:12px;color:var(--ink-3)}
+.scorebar .pct{font-family:var(--display);font-weight:900;font-size:20px;color:var(--navy);font-variant-numeric:tabular-nums;min-width:2.2ch;text-align:center}
+.scorebar .pct.pass{color:var(--good)}
+.scorebar .pct.fail{color:var(--crit)}
+.btns{display:flex;gap:6px;flex-wrap:wrap}
+.btn{all:unset;box-sizing:border-box;cursor:pointer;font-family:var(--body);font-size:12.5px;font-weight:700;padding:5px 11px;border-radius:99px;border:1px solid var(--line);color:var(--ink-2);background:var(--paper);white-space:nowrap}
+.btn:hover{background:var(--blue-soft);color:var(--blue)}
+.btn:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+.btn[aria-pressed="true"]{background:var(--crit-soft);color:var(--crit);border-color:var(--crit)}
+.btn.addbtn[aria-pressed="true"]{background:var(--add-soft);color:var(--add);border-color:var(--add)}
+.btn.warn{color:var(--crit);border-color:var(--crit)}
+
+footer{border-top:1px solid var(--line);padding-top:20px;margin-top:46px;font-size:12.5px;color:var(--ink-3)}
+footer p{max-width:72ch}
+
+@media (max-width:520px){
+  .opts,.qi details{padding-inline-start:0}
+  .tab .tt{font-size:10.5px}
+}
+@media print{
+  nav.tabs,.scorebar,body::before,.pnav{display:none}
+  section.part[hidden]{display:block!important}
+  .qi,.case,.trap,.add{break-inside:avoid}
+  section.part{break-before:page}
+  main.wrap{padding-block:0 20px}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+
+<header class="mast">
+  <div class="wrap">
+    <p class="eyebrow">המשמר האזרחי · הכשרת יח״ם סיור שלב א׳</p>
+    <h1>סיכום ומבחן תרגול לשלב א׳</h1>
+    <p>החומר של ימים 1, 2 ו־3. יום 4 יתווסף אחרי שנלמד אותו. בכל יום: סיכום, ומבחן אמריקאי עם הסבר לכל שאלה.</p>
+    <div class="facts">
+      <div>מה יש כאן<b>ימים 1–3</b></div>
+      <div>בדף הזה<b><span id="qtotal">—</span> שאלות · 6 תרחישים</b></div>
+      <div>ציון עובר במבחן<b>70</b></div>
+    </div>
+  </div>
+</header>
+
+<nav class="tabs" aria-label="ימי הקורס">
+  <div class="row" role="tablist">
+    <button type="button" class="tab" role="tab" id="tab1" data-part="1" aria-controls="p1"><span class="tn">יום 1</span><span class="tt">סמכויות והגבלות</span></button>
+    <button type="button" class="tab" role="tab" id="tab2" data-part="2" aria-controls="p2"><span class="tn">יום 2</span><span class="tt">סיור, שב״ח, אלכוהול</span></button>
+    <button type="button" class="tab" role="tab" id="tab3" data-part="3" aria-controls="p3"><span class="tn">יום 3</span><span class="tt">נוער, זירה, עדות</span></button>
+  </div>
+</nav>
+
+<main class="wrap">
+
+<div class="lead">
+  <p><b>איך לעבוד עם הדף.</b> בוחרים יום בלשוניות למעלה. בכל יום: קודם הסיכום, אחר כך המבחן האמריקאי.</p>
+  <p>לחיצה על תשובה מראה מיד אם צדקת ולמה. הסרגל בתחתית מראה את הציון של היום, ושל כל הדף (עובר = 70).</p>
+</div>
+
+<!-- ======================================================= חלק 1 -->
+<section class="part" id="p1" data-part="1" role="tabpanel" aria-labelledby="tab1">
+<div class="phead"><span class="pk">יום 1</span><h2>מי אתה עכשיו, מה מותר לך ומה אסור</h2></div>
+<p class="topics">שיחת פתיחה · סמכויות מתנדב · הגבלות בהפעלת מתנדבים · ניתוח אירוע · תרגיל מעשי בסמכויות</p>
+<ul class="pnav"><li><a href="#p1-sum">סיכום</a></li><li><a href="#p1-q">מבחן אמריקאי</a></li></ul>
+
+<h3 class="sec-title" id="p1-sum">סיכום</h3>
+<div class="sumbody">
+  <h4>מה הקורס הזה בכלל</h4>
+  <ul>
+    <li>שלב א׳ הופך מתנדב ״קלאסי״ (מתנדב אבטחה מהקורס הבסיסי) ל<b>מתנדב סיור</b>.</li>
+    <li>מטרת העל: המתנדב <b>יסייע</b> למשטרה בתחום השיטור, באג״ם של התחנה (אג״ם = המשרד שאחראי על הסיור, המבצעים והמתנדבים).</li>
+    <li>אחרי הקורס אתה עובד <b>יחד עם שוטר</b>, ומוסמך לטפל איתו <b>בכל אירוע</b>. עבודה בניידת <b>בלי</b> שוטר שמורה לבוגרי שלב ב׳.</li>
+    <li>ארבעה מפגשים, 19 שיעורים. המבחן המסכם במפגש הרביעי.</li>
+    <li><b>ציון עובר: 70.</b> מועד ב׳ עד שלושה שבועות אחרי המבחן. ערעור: תוך 3 ימי עבודה, למפקד הקורס.</li>
+  </ul>
+  <div class="add">
+    <h4>מה תדע לעשות בסוף הקורס</h4>
+    <p>לשמור על זירת עבירה · לתפוס מוצגים · לבדוק חשודים בבטיחות · לתת טיפול ראשוני לבני נוער · להעיד בבית משפט · לטפל בשב״ח ובאירועי אלכוהול · לפעול לפי המגבלות על מתנדבים. בלי ההכשרה הזו, מתנדב לא פועל בתחום הפלילי.</p>
+  </div>
+
+  <h4>מתי אתה ״בתפקיד״</h4>
+  <p>רק כשקרו שלושה דברים: <b>זומנת</b> לפעילות, <b>נרשמת</b> ביומן ההפעלה ובשירת הסירנה, ו<b>תודרכת</b> לקראת המשמרת. אתה לא יכול ״להכניס״ את עצמך לפעילות. לא בתפקיד = סמכויות של אזרח.</p>
+
+  <h4>שלושת המצבים</h4>
+  <div class="tw"><table>
+    <thead><tr><th>תחום הפעילות</th><th>עם שוטר</th><th>בלי שוטר</th></tr></thead>
+    <tbody>
+      <tr><td><b>מניעת פעולות איבה</b> (טרור). כל מתנדב</td><td>סמכויות של שוטר</td><td>סמכויות של שוטר</td></tr>
+      <tr><td><b>מניעת עבירות פליליות</b>. רק מי שעבר הכשרת יח״ם מתאימה</td><td>סמכויות של שוטר</td><td>סמכויות של שוטר, <b>חוץ ממעצר</b> שמותר רק בסייגים</td></tr>
+      <tr><td><b>מומחיות מקצועית</b> (זק״א, רופאים וכו׳)</td><td>בלי סמכויות</td><td>בלי סמכויות</td></tr>
+    </tbody>
+  </table></div>
+  <div class="key">
+    <p><b>״בנוכחות שוטר״</b> = השוטר איתך פיזית, <b>או בפיצול רגעי</b> ממנו (למשל ניגש לרכב השני לכמה שניות). קשר בטלפון או בקשר <b>אינו</b> נוכחות.</p>
+    <p>מתנדב אבטחה שנתקל <b>דרך אגב</b> באירוע פלילי, תוך כדי פעילות ביטחונית: סמכויות של שוטר, חוץ ממעצר בסייגים. אסור לכוון אותו מראש לאירועים פליליים.</p>
+  </div>
+  <div class="add">
+    <p><b>בשמות שבמצגת:</b> מצב ראשון = אבטחה נגד פעולות איבה · <b>מצב שני = עם שוטר, וזה אתה בשלב א׳</b> · מצב שלישי = בלי שוטר בתחום הפלילי (בוגרי שלב ב׳, או מתנדב קלאסי שנתקל באירוע).</p>
+  </div>
+
+  <div class="add">
+    <h4>מה זה אומר עליך, כבוגר שלב א׳</h4>
+    <ul>
+      <li><b>אתה לא נשלח לבד לשום אירוע.</b> כל אירוע — רק יחד עם שוטר. ואז מותר לך לטפל איתו בכל סוג של אירוע.</li>
+      <li>בלי שוטר — גם אם יש איתך מתנדב שלב ב׳ — אתה <b>מתנדב קלאסי</b>: פועל רק נגד פעולות איבה. נתקלת באירוע פלילי? טיפול ראשוני, ומזעיקים שוטר.</li>
+      <li>״14 האירועים״ שבמצגת שייכים ל<b>שלב ב׳</b>: לשם שולחים ניידת של שני מתנדבים בלי שוטר. לך מספיק לדעת שהרשימה קיימת, ושהיא לא שלך.</li>
+      <li>גם שלב ב׳ לא נשלח לבד לאלימות במשפחה, סכסוך שכנים, קטינים או חולי נפש. שם תמיד צריך שוטר.</li>
+      <li>אתה עובד עם <b>שוטר קבע</b>, לא עם שוטר שח״מ (שירות חובה).</li>
+      <li>מרדף רכוב, אכיפת תנועה והכוונת תנועה — לא בשלב א׳.</li>
+    </ul>
+  </div>
+
+  <div class="add">
+    <h4>למה ההגבלות חשובות, ומי עושה מה</h4>
+    <ul>
+      <li>מתנדב שפועל לא לפי הנהלים עלול לגרום ל: זיכוי נאשמים · תביעות · בעיות ביטוח למתנדב עצמו · הסלמה · פציעות.</li>
+      <li><b>מתנדב אבטחה</b>: רק נגד פעולות איבה — מחסומים, סיורי נוכחות, אבטחת אירועים ובתי כנסת, סיוע בחירום. בכל סיור לפחות 2 מתנדבים בוגרים ו־2 כלי נשק (אחד ארוך).</li>
+      <li>כדי לצאת לפעילות צריך: לסיים את הגיוס וההכשרה, ותעודת מינוי.</li>
+    </ul>
+  </div>
+
+  <h4>מעצר כשאין שוטר במקום</h4>
+  <p>מותר רק באחד משני מצבים:</p>
+  <ul>
+    <li><b>העבירה עברה מולך או ״זה מקרוב״</b> (לפני שעות, לא ימים), והיא אחת מאלה: <b>אלימות, גניבה, התפרצות, נזק של ממש לגוף או לרכוש</b>, או עבירות תעבורה: סירוב למסור פרטים או רישיונות, זיוף, פגע וברח, נהיגה רשלנית שמסכנת את הציבור, נהיגה בשכרות.</li>
+    <li><b>החשוד לא מציית לעיכוב</b> (לא מוכן לחכות או לתת פרטים), ויש חשש שיברח או שלא יודעים מי הוא. כאן <b>סוג העבירה לא משנה</b>: לעכב מותר בכל עבירה פלילית.</li>
+  </ul>
+  <p>עבירות <b>בלי</b> סמכות מעצר: סמים, עבירות מין שאינן כרוכות באלימות, מרמה והונאה. בהן יש רק <b>עיכוב</b>, כולל בדיקת מסמכים, תחקור ותפיסת ראיות.</p>
+  <div class="note">
+    <p><b>נוהל המעצר, 4 שלבים לפי הסדר:</b> דורשים ממנו לחכות לשוטר ← השוטר לא יכול להגיע בזמן סביר ← דורשים ממנו לבוא איתך לתחנה ← הוא מסרב. רק אז עוצרים.</p>
+    <p><b>חריג:</b> אם הוא תוקף או מנסה לברוח ולא נותן לקיים את השלבים, עוצרים ישירות.</p>
+    <p>מעצר כזה הוא <b>המקרה היחיד</b> שבו מתנדב מלווה ושומר על עצור, עד התחנה. שם שוטר לוקח עליו אחריות מיד.</p>
+  </div>
+  <p>כוח: רק כדי לבצע מעצר שאתה מוסמך לבצע. כניסה וחיפוש בבית: רק אם זה נחוץ למעצר ואין דרך אחרת, או אם יש חשש ממשי שמישהו ייפגע שם.</p>
+
+  <h4>מה אסור למתנדב</h4>
+  <ul>
+    <li><b>לשמור על עצור או ללוות אותו.</b> מותר רק לנהוג ברכב שמסיע עצורים, בלי שום מגע פיזי עם העצור.</li>
+    <li><b>להעביר מוצגים או ראיות</b> מהתחנה הלאה (למעבדה, לפרקליטות).</li>
+    <li><b>לגבות עדות, לחקור באזהרה או לתרגם חקירה.</b> מותר רק תשאול ראשוני בזירה, שנרשם על מזכר.</li>
+    <li><b>לפקד על מחסום.</b> מפקד מחסום הוא שוטר קבע בלבד. מתנדב משתתף במחסום רק אחרי תדריך.</li>
+    <li><b>הפגנות והפרות סדר</b>: אסור, גם הפגנה באישור, וגם כשיש שוטר איתך. נקלעת בלי תכנון? מדווחים, מקפיאים מצב, ויוצאים כשהכוחות מגיעים.</li>
+    <li><b>אבטחת אישים חשובים</b>: לא במעגל הפנימי. רק במעגל הרחב של האירוע.</li>
+    <li>לשמש <b>זקיף בתחנה</b>, או לעבוד בניידת עם <b>פקח</b>.</li>
+  </ul>
+
+  <h4>מרדף רכוב</h4>
+  <p>ככלל אסור. מותר רק לבוגרי <b>שלב ב׳</b>, במדים, <b>ברכב משטרה</b> עם כריזה ואור כחול, בחשד ל<b>פשע חמור</b>, ובאישור קצין משמרת או קצין תורן. <b>ברכב פרטי — אף פעם.</b></p>
+
+  <h4>רכב פרטי בפעילות</h4>
+  <ul>
+    <li>ביטוח חובה וצד ג׳, מסמכי רישוי בתוקף, <b>גיל הרכב עד 15 שנים</b>, בלי שום פרסומת או מדבקה.</li>
+    <li>פנס כחול מהבהב רק כשאתה בתפקיד והרכב רשום ביומן. הפנס <b>לא הופך את הרכב לרכב ביטחון</b>: הוא רק לנוכחות, בולטות והרתעה.</li>
+    <li>אסור להתקין כריזה ברכב פרטי. אסור להשאיר עליו סימני משטרה מחוץ לפעילות.</li>
+    <li>סיור ברכב לא משטרתי: לפחות 2 מתנדבים. עם נערים: <b>מבוגר אחד על כל 2 נערים, ולא יותר מ־2 נערים ברכב</b>.</li>
+  </ul>
+  <div class="add">
+    <ul>
+      <li>פנס ומגנטים של משטרה — רק עם <b>אישור בכתב</b>, ורק כשהרכב רשום בשירת הסירנה.</li>
+      <li>נוהג ברכב <b>רק הבעלים</b>, או מי שהוסמך מטעמו. אסור להשתמש בציוד שקנית בעצמך ולא קיבלת מהמשטרה.</li>
+      <li>מתנדבים בני נוער: לא בפעילות יזומה נגד פשיעה. במחסום הם רק מאבטחים, לא בודקים אנשים.</li>
+    </ul>
+  </div>
+
+  <h4>רענון מהקורס הבסיסי</h4>
+  <ul>
+    <li>חטא: עד 3 חודשים · עוון: עד 3 שנים · פשע: מעל 3 שנים · <b>פשע חמור: מעל 10 שנים</b>.</li>
+    <li>עיכוב עד 3 שעות (עוד 3 באישור קצין כשיש הרבה מעורבים). <b>זמן החקירה בתחנה לא נספר.</b> דו״ח עיכוב: מעל 20 דקות, או כשהובא לתחנה.</li>
+    <li>חיפוש ״בהסכמה״ מותר רק ב<b>כניסה למקום</b> וב<b>טלפון נייד</b>. שום חיפוש אחר.</li>
+    <li>אזרח רגיל יכול רק <b>לעכב</b> (לא לעצור), בכוח סביר שלא גורם חבלה, ולמסור לשוטר מיד.</li>
+    <li>חיפוש מוגבל על מעוכב: כשהוא עולה לרכב משטרה או לאמבולנס, כדי למצוא נשק. לא מורידים בגדים, חוץ מכובע, כיסוי פנים ונעליים.</li>
+  </ul>
+</div>
+
+<h3 class="tp sub" id="p1-traps">מלכודות ומספרים</h3>
+<div class="sumbody">
+  <div class="traps">
+    <div class="trap"><div class="tn">1</div><div class="tb"><p class="bad">״השוטר בקשר איתי, אז יש לי סמכויות מלאות״</p><p class="good">לא. ״בנוכחות שוטר״ = פיזית איתך, <b>או בפיצול רגעי</b> ממנו. קשר או טלפון לא נחשבים.</p></div></div>
+    <div class="trap"><div class="tn">2</div><div class="tb"><p class="bad">״מתנדב לא מלווה עצורים, נקודה״</p><p class="good">נכון, חוץ ממקרה אחד: עצור <b>שהמתנדב עצר בעצמו בלי שוטר</b>. אותו הוא מביא לתחנה. ובכל מקרה מותר לו לנהוג ברכב שמסיע עצורים.</p></div></div>
+    <div class="trap"><div class="tn">3</div><div class="tb"><p class="bad">״תפסתי את הסם, אני אקח אותו למעבדה״</p><p class="good">מתנדב <b>לא מעביר מוצגים</b> מהתחנה הלאה. מביאים לתחנה — וזהו.</p></div></div>
+    <div class="trap"><div class="tn">4</div><div class="tb"><p class="bad">״המקסימום הוא 9 שעות״</p><p class="good">בשלב א׳: <b>9.5 שעות</b> ברצף, כולל חצי שעה הפסקה. עד 12 באישור חריג.</p></div></div>
+  </div>
+  <div class="add">
+    <div class="traps">
+      <div class="trap"><div class="tn">5</div><div class="tb"><p class="bad">״אני שלב א׳, אפשר לשלוח אותי לבד לפעמון אזעקה״</p><p class="good">לא. <b>שלב א׳ לא נשלח לבד לשום אירוע.</b> רק עם שוטר. אירועים בלי שוטר — רק לשני בוגרי שלב ב׳.</p></div></div>
+      <div class="trap"><div class="tn">6</div><div class="tb"><p class="bad">״כייסות זו לא עבירה ברשימה, אז אין סמכות מעצר״</p><p class="good">כייסות היא <b>גניבה</b>, והיא ברשימה. אבל גם אז קודם <b>עיכוב</b> וניסיון להביא שוטר. מעצר — רק אם השלבים נכשלו.</p></div></div>
+      <div class="trap"><div class="tn">7</div><div class="tb"><p class="bad">״חסר שוטר, נשבץ מתנדב אבטחה בניידת סיור״</p><p class="good">לא. מתנדב אבטחה <b>לא עבר הכשרת סיור</b>, ולכן לא משבצים אותו בסיור, גם לצד שוטר.</p></div></div>
+    </div>
+  </div>
+  <div class="tw"><table>
+    <thead><tr><th>מה</th><th>המספר</th></tr></thead>
+    <tbody>
+      <tr><td>ציון עובר · מועד ב׳ · ערעור</td><td class="num">70 · עד 3 שבועות · 3 ימי עבודה</td></tr>
+      <tr><td>גיל גיוס למתנדב יח״ם</td><td class="num">21–64</td></tr>
+      <tr><td>מינימום בסיור או בתנועה</td><td class="num">7 שעות רצופות, או 10 במצטבר (כל פעם 3+)</td></tr>
+      <tr><td>מינימום מתנדב אבטחה</td><td class="num">4 שעות בחודש</td></tr>
+      <tr><td>מקסימום משמרת</td><td class="num">9.5 שעות · 12 באישור · 5 ימים בשבוע</td></tr>
+      <tr><td>גיל רכב פרטי בפעילות</td><td class="num">עד 15 שנים</td></tr>
+      <tr><td>נערים ברכב</td><td class="num">מבוגר על כל 2 · עד 2 ברכב</td></tr>
+      <tr><td>מטווח: יח״ם · אבטחה · כיתת כוננות</td><td class="num">שנה · שנתיים · חצי שנה</td></tr>
+      <tr><td>פשע חמור</td><td class="num">מעל 10 שנים</td></tr>
+    </tbody>
+  </table></div>
+</div>
+
+<h3 class="sec-title" id="p1-q">מבחן אמריקאי <span class="cnt" data-cnt="1"></span></h3>
+<div class="qlist" data-q="1"></div>
+
+<h3 class="tp sub" id="p1-cases">תרחיש מהשטח</h3>
+<div class="case">
+  <p class="ct">תרחיש · הגבלות בהפעלת מתנדבים</p>
+  <h4>העצור לבית המשפט</h4>
+  <p>יוסי, שוטר סיור, מקבל משימה דחופה: להביא עצור לדיון בבית משפט. השותף שלו בניידת הוא ברוך, מתנדב סיור ותיק, שאין לו רישיון נהיגה. יוסי מבקש מברוך לשבת מאחור ליד העצור עד בית המשפט, וברוך עושה את זה.</p>
+  <p class="cq">האם יוסי וברוך פעלו נכון?</p>
+  <details><summary>הצג ניתוח</summary><div class="ans"><p><span class="c">לא. זה בניגוד לנוהל.</span><span class="why">
+  מתנדב <b>לא שומר על עצורים</b> ו<b>לא נוגע בהם</b>. הדבר היחיד שמתנדב יכול לעשות בהסעת עצורים הוא <b>לנהוג</b> ברכב, וברוך בכלל בלי רישיון.<br>
+  ליווי לבית משפט אסור למתנדב גם כשיש שוטר.<br>
+  החריג היחיד: עצור שמתנדבים עצרו בעצמם, בלי שוטר. אותו הם מביאים לתחנה, ושם מוסרים לשוטר מיד.</span></p></div></details>
+</div>
+</section>
+
+<!-- ======================================================= חלק 2 -->
+<section class="part" id="p2" data-part="2" role="tabpanel" aria-labelledby="tab2">
+<div class="phead"><span class="pk">יום 2</span><h2>הסיור, השב״ח, האלכוהול, ואיך ניגשים לחשוד</h2></div>
+<p class="topics">תפקידי הסיור · הטיפול בשב״ח · חוק האלכוהול · בדיקת חשודים · התנהגות מבצעית</p>
+<ul class="pnav"><li><a href="#p2-sum">סיכום</a></li><li><a href="#p2-q">מבחן אמריקאי</a></li></ul>
+
+<h3 class="sec-title" id="p2-sum">סיכום</h3>
+<div class="sumbody">
+  <h3 class="tp">תפקידי מערך הסיור</h3>
+  <ul>
+    <li>חלוקת העבודה: <b>הסייר</b> מונע עבירות, תופס עבריינים ושומר על הסדר · <b>החוקר</b> חוקר · <b>התובע</b> מעמיד לדין. בשרשרת: הסיור תופס חשוד ומשמר זירה, החקירות חוקרות, התביעה מגישה כתב אישום.</li>
+    <li>הסיור פועל מסביב לשעון, מגיע <b>ראשון</b> לכל אירוע, ולכן קובע את תדמית המשטרה.</li>
+    <li><b>היומנאי</b>: ״הפנים״ של התחנה. מקבל קהל, מקבל תלונות או מפנה לחוקר, אבדות ומציאות, עצורים, ציוד ונשק, יומני התחנה.</li>
+    <li><b>אירוע תגובה</b>: אזרח קרא, או שוטר ראה ופתח אירוע. <b>אירוע יזום</b>: מתוכנן מראש, כמו ביקורת מאוימים, ביקורת מעצרי בית, מחסום פתע.</li>
+  </ul>
+  <div class="add">
+    <h4>מי זה מי בסיור</h4>
+    <ul>
+      <li><b>מפקד ניידת</b>: שוטר קבע אחרי קורס שוטרים, <b>בעל הדרגה הבכירה בניידת</b>. המתנדב אף פעם לא מפקד הניידת.</li>
+      <li><b>ניידת סיור</b>: שני שוטרי קבע, או שוטר קבע עם שוטר חובה או מתנדב.</li>
+      <li><b>קצין תורן</b>: המפקד התורן בתחנה.</li>
+      <li><b>משל״ט (מרכז שליטה)</b>: מקבל את שיחות ה־100, משגר ניידות ומנהל אירועים, יחד עם מד״א, כבאות, פיקוד העורף ועוד.</li>
+      <li>אירועים יזומים: <b>משימה</b> — מתוכננת ואי אפשר לבטל (ביקור מאוימים, ליווי עצור) · <b>פעילות</b> — אכיפה עם גמישות בזמן (מחסום יזום) · <b>מטלה</b> — מנהלית (טיפול ברכב, מטווח).</li>
+      <li>הסיור עוזר גם כשאין עבירה: נעדרים, קשישים, שיכורים.</li>
+    </ul>
+  </div>
+  <div class="tw"><table>
+    <thead><tr><th>זמן הגעה (דקות)</th><th>קיצון</th><th>דחוף</th><th>רגיל</th></tr></thead>
+    <tbody>
+      <tr><td><b>שטח עירוני</b></td><td class="num">10</td><td class="num">15</td><td class="num">30</td></tr>
+      <tr><td><b>שטח כפרי</b></td><td class="num">20</td><td class="num">30</td><td class="num">45</td></tr>
+    </tbody>
+  </table></div>
+  <ul>
+    <li><b>זמן תגובה</b> נמדד מרגע שהמשל״ט שיגר ניידת ועד שהניידת הראשונה הגיעה.</li>
+    <li>קיצון: סכנת חיים, פשיעה חמורה. דחוף: פגיעה קלה, יש חשודים או עדים במקום, חשש להסלמה. רגיל: איחור לא יגדיל את הנזק, למשל פריצה בלי חשודים ועדים. אירוע שהניידת עצמה זיהתה בשטח — אין זמן תגובה.</li>
+  </ul>
+  <div class="key">
+    <p><b>הרכב ניידת:</b> שני שוטרי קבע · קבע + שח״מ · <b>קבע + מתנדב</b>. <b>שח״מ + מתנדב שלב א׳ — אסור.</b></p>
+    <p>מתנדב שלב א׳ <b>בלי שוטר</b>, גם יחד עם מתנדב שלב ב׳, פועל כ<b>מתנדב קלאסי בלבד</b>. ניידת מתנדבים בלי שוטר = שני בוגרי שלב ב׳.</p>
+  </div>
+
+  <h3 class="tp">שב״ח (שוהה בלתי חוקי)</h3>
+  <ul>
+    <li>שב״ח = תושב שטחים שנמצא בישראל בלי היתר. שהייה לא חוקית: נכנס או יושב בניגוד לחוק · מסר מידע כוזב כדי לקבל היתר · הפר תנאי בהיתר שלו.</li>
+    <li><b>שעות שהייה מותרות: 05:00–19:00.</b> אחרי העבודה חוזרים הביתה. לינה רק עם אישור לינה. משמרות רק אם זה כתוב ברישיון.</li>
+    <li><b>עבריין מועד</b>: הפר תנאי רישיון 5 פעמים, או נכנס בלי אישור 3 פעמים, או נכנס כשהוא מוגבל כניסה.</li>
+    <li>בבדיקת היתר בודקים: הפרטים תואמים לתעודה · איפה ההיתר תקף (למשל ״ישראל למעט אילת״) · תאריכים · פרטי המעסיק · השעות.</li>
+  </ul>
+  <div class="add">
+    <ul>
+      <li>את ההיתרים מנפיקה <b>מנהלת התיאום והקישור (מת״ק)</b>. ״מפר תנאי רישיון״ = יש לו היתר, והפר תנאי שכתוב בו.</li>
+      <li>אישור קבע: לשנה · אישור זמני: <b>תמיד יחד עם תעודת זהות</b> · אישור לינה: מהמת״ק · היתר לרכב: בתנאים (למשל רק לירושלים).</li>
+      <li>חושד שההיתר מזויף? בודקים מול המת״ק, ומחרימים.</li>
+    </ul>
+  </div>
+  <div class="note">
+    <p><b>שלבי הטיפול:</b> מעכבים ← תחקור ראשוני (מה עושה, מאיפה בא) ← בדיקת מסוף.</p>
+    <p>מסוף אומר <b>דרוש שב״כ, מוגבל כניסה או עבריין מועד</b>? מעדכנים את קצין המודיעין ומביאים <b>מיד</b> לתחנה.</p>
+    <p>אין עילת מעצר ואין צורך בעדותו נגד מסיע, מעסיק או מלין? מוציאים מישראל. לפני כן: <b>שימוע בכתב אצל קצין בדרגת פקד ומעלה</b>. עזה ← מחסום ארז. יהודה ושומרון ← המחסום הקרוב. במשמורת: תא נפרד מעצורים פליליים.</p>
+  </div>
+  <ul>
+    <li><b>מעסיק</b>, <b>מלין</b> (נתן מקום לינה ביודעין), <b>מסיע</b> (הסיע ברכבו). מסיעי שב״חים הם סיכון ביטחוני: הם היו מעורבים ברוב פיגועי ההתאבדות.</li>
+    <li>את המסייע מעכבים לתחנה <b>יחד</b> עם השב״חים, ולכל אחד דו״ח עיכוב או מעצר נפרד, ודו״ח פעולה מפורט.</li>
+    <li><b>מעסיק</b>: לפני התפיסה רואים שהוא באמת עובד, ושהמעסיק נותן לו הוראות. מצלמים רק בלי להיחשף, ורושמים מזכר על הצילום.</li>
+    <li><b>מלין</b>: מזמינים חוקר מז״פ לצלם. מתארים את מקום הלינה: מספר מיטות, מצעים, תרשים.</li>
+    <li><b>מסיע</b>: למחזיק הרכב נותנים איסור שימוש, אלא אם ראש משרד החקירות החליט לתפוס את הרכב.</li>
+    <li>כניסה למקום שאינו בית מגורים, כשיש חשד לשב״ח: מותר בכל עת סבירה. <b>לבית מגורים — רק עם צו.</b></li>
+  </ul>
+
+  <h3 class="tp">חוק האלכוהול</h3>
+  <ul>
+    <li><b>משקה משכר</b> = מעל 2% אלכוהול, או משקה שלפי ריחו או הכלי שלו אפשר להניח שהוא משכר.</li>
+    <li><b>מקום ציבורי</b> = פארק, ספסל, רחוב, תחבורה. החוק <b>לא חל</b> על מסעדה, בית קפה, פאב, מלון, מופעים, אולם שמחות.</li>
+    <li><b>אחראי על קטין</b> = הורה, הורה חורג, אפוטרופוס, או מי שהקטין בהשגחתו לפי דין או בהסכמת הוריו. <b>חבר בגיר אינו אחראי.</b></li>
+  </ul>
+  <div class="tw"><table>
+    <thead><tr><th>מי שותה</th><th>מתי יש סמכות לתפוס או להשמיד (שלושה תנאים יחד)</th></tr></thead>
+    <tbody>
+      <tr><td><b>בגיר</b></td><td>שותה או מתכוון לשתות · במקום ציבורי או ברכב במקום ציבורי · <b>יש חשש להפרת הסדר</b> או לפגיעה בשלום הציבור</td></tr>
+      <tr><td><b>קטין</b></td><td>שותה או מתכוון לשתות · במקום ציבורי · <b>בלי האחראי עליו</b> ובהסכמתו (לא צריך חשש להפרת סדר)</td></tr>
+      <tr><td><b>כל גיל, כלי פתוח</b></td><td>כלי קיבול פתוח · במקום ציבורי · <b>בין 21:00 ל־06:00</b>. כאן החוק <b>מניח</b> כוונה לשתות וחשש להפרת סדר, אלא אם השוטר השתכנע אחרת</td></tr>
+    </tbody>
+  </table></div>
+  <div class="key">
+    <p><b>למתנדב אין סמכות לתפוס או לשפוך אלכוהול. גם לא בנוכחות שוטר.</b> השוטר שופך, המתנדב מאבטח.</p>
+    <p>כלי אחד פתוח? מותר לשפוך גם את הבקבוקים הסגורים. איסור <b>מכירה</b> בחנויות: <b>23:00–06:00</b> (לא 21:00). מכירה לקטין: 6 חודשי מאסר, אלא אם הקטין הציג תעודה.</p>
+  </div>
+  <ul>
+    <li>הנחות יסוד: שתויים חושבים פחות טוב ועלולים לתקוף. בקבוק זכוכית הוא כלי תקיפה.</li>
+    <li>שני שוטרים יוצאים יחד. אחד מטפל, אחד מאבטח (עם פלפל מוכן). עומדים <b>2–3 מטרים</b> מהחשודים, ב<b>זווית של 90 מעלות</b> לפחות.</li>
+    <li>לא משתפים פעולה? מורים להניח את כל המשקאות על הקרקע, להתרחק 2–3 מטרים ולהציג תעודה. מי שמסרב <b>מכשיל שוטר</b>. הרבה חשודים? תגבורת.</li>
+    <li>שופכים במקום מוצנע, הכלי לפח. בסוף: דיווח למשל״ט ולראש המשמרת. באירוע <b>יזום בלי אירוע מוקד</b> לא חייבים דו״ח פעולה: מתעדים בתוצאת המשימה.</li>
+  </ul>
+  <div class="add">
+    <ul>
+      <li>למשטרה שני תפקידים לפי החוק: לשפוך בשטח, ולאכוף נגד <b>עסקים</b> שמוכרים בשעות האסורות או לקטינים.</li>
+      <li>עסק שמוכר אלכוהול חייב שלט: שעות האיסור, ואיסור מכירה <b>לקטין ולשיכור</b>.</li>
+    </ul>
+  </div>
+
+  <h3 class="tp">בדיקת חשודים והתנהגות מבצעית</h3>
+  <div class="add">
+    <ul>
+      <li><b>התנהגות מבצעית</b> = מה שהשוטר עושה כדי לשמור על עצמו תוך כדי עבודה. ארבעה מרכיבים: הופעה · שפת גוף · מוכנות מבצעית (בדיקת הציוד לפני המשמרת) · מוכנות מנטלית.</li>
+      <li>הופעה מסודרת היא ״כרטיס הביקור״ של המשטרה.</li>
+      <li>שפת גוף: סמכות, נחישות, ממלכתיות. לא ידיים בכיסים ולא ״חבר של האזרח״ — זה מזמין תקיפה.</li>
+    </ul>
+  </div>
+  <ul>
+    <li><b>כלל ברזל:</b> כל אדם שבודקים הוא סיכון אפשרי, בלי קשר לחשד.</li>
+    <li>לפני הבדיקה מדווחים למוקדן, בסוף מדווחים ״תום בדיקה״. מוקדן שלא שמע ״תום בדיקה״ מתקשר. אין תשובה? שולח ניידת.</li>
+    <li>חמישה עקרונות: <b>דריכות · טווח 1.20–2.00 מטר · זווית גישה · תנועות איטיות ומבוקרות של החשוד · עבודת צוות</b>.</li>
+    <li>בזוג: <b>אחד בודק, אחד מאבטח</b>, במשולש פתוח מול הנבדק. קובעים מי עושה מה <b>לפני</b> המשמרת. הצד הקרוב לנבדק: <b>הצד בלי האקדח</b>. את התעודה מחזיקים ביד החלשה, בגובה העיניים.</li>
+    <li>שוטר לבד מול כמה חשודים: מקפיא מצב, מבקש סיוע, ומרחיק אותם זה מזה.</li>
+    <li>מסוף אומר <b>מבוקש</b>: מדווחים ומבקשים תגבור, <b>לא מסגירים</b> לחשוד שגילינו, ועוצרים יחד עם שוטר נוסף.</li>
+    <li><b>לחצן המצוקה</b> במכשיר הקשר: משדר אותך לבד בתדר כ־10 שניות, והמוקדן מאתר אותך. רק בחירום.</li>
+    <li>הנחת יד על הנשק כשמרגישים איום <b>אינה</b> שימוש בנשק. מול סכנה יש שלוש תגובות: להילחם, לברוח, לקפוא.</li>
+  </ul>
+  <div class="add">
+    <ul>
+      <li><b>כבוגר שלב א׳ אתה בודק חשודים רק יחד עם שוטר.</b> בדיקת חשודים בלי שוטר — רק לבוגרי שלב ב׳.</li>
+      <li>מותר לחפש על הגוף: על עצור · כשיש חשד לסם · כשיש חשד לנשק, או בכניסה למקום מאובטח · אגב חיפוש במקום.</li>
+      <li>ניגשים לחשוד מהצד, לא מהחזית.</li>
+      <li>חשוד אלים שנעצר: <b>ידיים מאחורי הגב</b>, וחיפוש מיד. עצור עובר לאדם אחר רק בחתימה.</li>
+      <li>מצאת נשק על חשוד: לא נוגעים לפני התייעצות עם חבלן.</li>
+    </ul>
+  </div>
+  <div class="note">
+    <p><b>חיפוש על הגוף:</b> קודם שואלים אם יש עליו משהו שלא אמור להיות, ומבקשים שיוציא מהכיסים לאט. אחר כך: פנים לקיר, ידיים לקיר, ידיים לצדדים, אצבעות פתוחות, רגליים לאחור, פסק רגליים. בשטח פתוח: אצבעות משולבות מאחורי הגב, ״סוחטים״ אותן ביד אחת.</p>
+    <p>כפפות תמיד. <b>אסור להכניס יד לכיסים שלו.</b> צריך פלפל או טייזר? המחפש צועק ״הפעל!״ וזז אחורה, והמאבטח מפעיל. מתנגד? מורידים לקרקע בלחץ על החלק האחורי של הברך.</p>
+  </div>
+  <ul>
+    <li><b>הובלת עצור</b>: יד עליו, השוטר מאחוריו או בצדו. מרגע המעצר אתה מחליט איפה הוא עומד ויושב.</li>
+    <li><b>בניידת</b> בלי תא עצורים: השוטר יושב מאחור, <b>מאחורי הנהג</b>, ונעילת ילדים.</li>
+    <li><b>רכב חשוד</b>: עוצרים במקום בטוח, ניגשים <b>מימין</b> (צד הנוסע). מורים לדומם מנוע, מפתחות על לוח השעונים או הגג, שתי ידיים על ההגה. הניידת היא לא מגן.</li>
+    <li><b>חיפוש ברכב</b>: קודם חיפוש על החשודים, מרכזים אותם במקום בטוח, ומחפשים ברכב <b>בנוכחות עד</b> שמסתכל אבל לא מחפש בעצמו.</li>
+    <li><b>אופנוע</b>: דומם מנוע, <b>קסדה למושב או לקרקע</b> (גם לנוסע), מפתח על הכידון, לרדת לשוליים. קסדה היא כלי תקיפה.</li>
+    <li><b>אזיקי רגליים</b>: פתחי המנעול למעלה, העצור עם הפנים לקיר. מתפרע? כובלים כשהוא שוכב.</li>
+  </ul>
+  <div class="add">
+    <ul>
+      <li>ברכב: <b>לא מכניסים ראש לתוך הרכב</b>, ולא מחפשים בתא המטען כשהחשוד עומד לידך.</li>
+      <li>מותר לעכב רכב לחיפוש כשיש חשד לעבירה בת מעצר (עוון או פשע), כדי למצוא חשוד, קורבן או ראיה.</li>
+      <li>אזיקי ידיים: <b>פתחי המפתח פונים לגוף העצור</b>, כדי שלא יגיע אליהם. הנצרות למעלה.</li>
+    </ul>
+  </div>
+</div>
+
+<h3 class="tp sub" id="p2-traps">מלכודות ומספרים</h3>
+<div class="sumbody">
+  <div class="traps">
+    <div class="trap"><div class="tn">1</div><div class="tb"><p class="bad">״אני שלב א׳ והחבר שלי שלב ב׳, נצא לבד בניידת״</p><p class="good">בלי שוטר, שלב א׳ (גם יחד עם שלב ב׳) פועל <b>כמתנדב קלאסי בלבד</b>. ניידת בלי שוטר = שני בוגרי שלב ב׳.</p></div></div>
+    <div class="trap"><div class="tn">2</div><div class="tb"><p class="bad">״אני ליד שוטר, אז מותר לי לשפוך את הבירה״</p><p class="good"><b>למתנדב אין סמכות להשמיד אלכוהול, גם בנוכחות שוטר.</b> השוטר שופך, אתה מאבטח.</p></div></div>
+    <div class="trap"><div class="tn">3</div><div class="tb"><p class="bad">מחליפים בין 21:00 ל־23:00</p><p class="good"><b>21:00–06:00</b>: חזקה כשמחזיקים כלי פתוח במקום ציבורי. <b>23:00–06:00</b>: איסור <b>מכירה</b> בחנויות.</p></div></div>
+    <div class="trap"><div class="tn">4</div><div class="tb"><p class="bad">״יש איתם חייל בן 19, אז הקטינים בסדר״</p><p class="good">חבר בגיר <b>אינו</b> ״אחראי על קטין״. אחראי = הורה, הורה חורג, אפוטרופוס, או מי שהקטין בהשגחתו לפי דין.</p></div></div>
+    <div class="trap"><div class="tn">5</div><div class="tb"><p class="bad">״הבקבוק סגור, אותו אסור לשפוך״</p><p class="good">אם יש כלי אחד פתוח, מותר לשפוך <b>הכול</b>, כולל הסגורים.</p></div></div>
+    <div class="trap"><div class="tn">6</div><div class="tb"><p class="bad">״כל דו״ח פעולה הוא חובה״</p><p class="good">באירוע אלכוהול <b>יזום, בלי אירוע מוקד</b>, לא חייבים דו״ח פעולה. מתעדים בתוצאת המשימה.</p></div></div>
+  </div>
+  <div class="add">
+    <div class="traps">
+      <div class="trap"><div class="tn">7</div><div class="tb"><p class="bad">״מפקד הניידת הוא מי שהכי ותיק בה״</p><p class="good">מפקד ניידת הוא <b>שוטר קבע אחרי קורס שוטרים</b>, <b>בעל הדרגה הבכירה</b>. מתנדב אף פעם לא מפקד ניידת.</p></div></div>
+      <div class="trap"><div class="tn">8</div><div class="tb"><p class="bad">״כבלתי, אז הוא כבר לא מסוכן״</p><p class="good">אם פתחי המפתח פונים <b>החוצה</b>, העצור יכול להגיע אליהם. נכון: פתחי המפתח <b>אל הגוף</b>, נצרות למעלה.</p></div></div>
+    </div>
+  </div>
+  <div class="tw"><table>
+    <thead><tr><th>מה</th><th>המספר</th></tr></thead>
+    <tbody>
+      <tr><td>זמני הגעה עירוני (קיצון · דחוף · רגיל)</td><td class="num">10 · 15 · 30 דקות</td></tr>
+      <tr><td>זמני הגעה כפרי</td><td class="num">20 · 30 · 45 דקות</td></tr>
+      <tr><td>שעות שהייה לשב״ח</td><td class="num">05:00–19:00</td></tr>
+      <tr><td>עבריין מועד</td><td class="num">5 הפרות · 3 כניסות</td></tr>
+      <tr><td>משקה משכר</td><td class="num">מעל 2%</td></tr>
+      <tr><td>חזקה בכלי פתוח · איסור מכירה</td><td class="num">21:00–06:00 · 23:00–06:00</td></tr>
+      <tr><td>מכירה לקטין</td><td class="num">6 חודשי מאסר</td></tr>
+      <tr><td>מרחק מחשודים שותים</td><td class="num">2–3 מטר, זווית 90°</td></tr>
+      <tr><td>טווח ביטחון מחשוד</td><td class="num">1.20–2.00 מטר</td></tr>
+      <tr><td>לחצן מצוקה</td><td class="num">כ־10 שניות שידור</td></tr>
+    </tbody>
+  </table></div>
+</div>
+
+<h3 class="sec-title" id="p2-q">מבחן אמריקאי <span class="cnt" data-cnt="2"></span></h3>
+<div class="qlist" data-q="2"></div>
+
+<h3 class="tp sub" id="p2-cases">תרחישים מהשטח</h3>
+<div class="case">
+  <p class="ct">תרחיש · שב״ח</p>
+  <h4>הפועלים בחממה</h4>
+  <p>אתה ושוטר בסיור יום, בשעה 14:00. ליד מושב אתם רואים שלושה גברים קוטפים מלפפונים בחממה. בעל המשק עומד לידם ומראה להם איפה לקטוף. כשאתם מתקרבים, אחד הפועלים מנסה לברוח. אף אחד מהם לא מציג היתר.</p>
+  <p class="cq">איך מטפלים באירוע, ומה עושים עם בעל המשק?</p>
+  <details><summary>הצג ניתוח</summary><div class="ans"><p><span class="c">מעכבים את כולם, כולל המעסיק, ובונים ראיות נגדו.</span><span class="why">
+  <b>לפני התפיסה:</b> שמים לב שהם באמת עובדים, ושבעל המשק נותן להם הוראות. אם אפשר בלי להיחשף, מצלמים ורושמים מזכר על הצילום.<br>
+  <b>בדיקה:</b> מעכבים, תחקור ראשוני (מה עושים כאן, מאיפה באו), בדיקת מסוף. אם מישהו מהם <b>דרוש שב״כ, מוגבל כניסה או עבריין מועד</b>: מעדכנים את קצין המודיעין ומביאים אותו מיד לתחנה.<br>
+  <b>הבורח:</b> עובדים בזוג לפי חלוקת התפקידים. אתה בנוכחות שוטר, ולכן יש לך סמכויות של שוטר.<br>
+  <b>המעסיק:</b> מעכבים אותו לתחנה <b>יחד</b> עם הפועלים. ממלאים דו״ח עיכוב או מעצר <b>לכל אחד בנפרד</b>, ודו״ח פעולה מפורט: מה הם עשו, ואיך המעסיק הנחה אותם.<br>
+  השעה 14:00 בתוך שעות השהייה המותרות (05:00–19:00). כאן הבעיה היא שאין היתר בכלל.</span></p></div></details>
+</div>
+<div class="case">
+  <p class="ct">תרחיש · חוק האלכוהול ובני נוער</p>
+  <h4>הוודקה בגן השעשועים</h4>
+  <p>23:15. אתה ושוטרת בניידת. בגן שעשועים יושבים חמישה נערים. נראה שהם בני 14–16. יש להם בקבוק וודקה פתוח ושני בקבוקי בירה סגורים. הם צועקים, ואחד מחזיק את בקבוק הוודקה ביד ולא מוכן להניח אותו. אחד הנערים אומר שהבקבוק נקנה ״רבע שעה קודם בפיצוצייה ליד״.</p>
+  <p class="cq">יש סמכות? מי עושה מה? ומה עם הפיצוצייה?</p>
+  <details><summary>הצג ניתוח</summary><div class="ans"><p><span class="c">יש סמכות להשמיד את כל האלכוהול. השוטרת משמידה, ואתה מאבטח.</span><span class="why">
+  <b>הסמכות:</b> קטינים שותים, במקום ציבורי, בלי אחראי עליהם. בנוסף, כלי פתוח אחרי 21:00. כלי אחד פתוח מאפשר לשפוך גם את הבירות הסגורות.<br>
+  <b>מי עושה מה:</b> לך, כמתנדב, <b>אין</b> סמכות לשפוך, גם ליד שוטרת. יוצאים יחד, השוטרת מטפלת ואתה מאבטח. עומדים 2–3 מטרים מהם, בזווית של 90 מעלות לפחות. בקבוק זכוכית הוא כלי תקיפה. חמישה חשודים: מזמינים תגבורת.<br>
+  <b>הנער שלא מניח את הבקבוק:</b> מורים לכולם להניח את המשקאות על הקרקע ולהתרחק. מי שמסרב <b>מכשיל שוטר</b>.<br>
+  <b>בני נוער:</b> מדווחים לקצין המשמרת ומעדכנים את קצין הנוער.<br>
+  <b>הפיצוצייה:</b> מכירה בשעות האסורות (23:00–06:00) ומכירה לקטין. מדווחים. ואם תופסים את הבקבוק כראיה נגד המוכר, <b>לא משמידים אותו בלי אישור קצין חקירות</b>.</span></p></div></details>
+</div>
+</section>
+
+<!-- ======================================================= חלק 3 -->
+<section class="part" id="p3" data-part="3" role="tabpanel" aria-labelledby="tab3">
+<div class="phead"><span class="pk">יום 3</span><h2>נוער, זירה, מוצגים, בית משפט ותנועה</h2></div>
+<p class="topics">דגשים בעבודה עם בני נוער · טיפול בזירת עבירה · תפיסת מוצגים · המתנדב כעד בבית משפט · הכוונת תנועה</p>
+<ul class="pnav"><li><a href="#p3-sum">סיכום</a></li><li><a href="#p3-q">מבחן אמריקאי</a></li></ul>
+
+<h3 class="sec-title" id="p3-sum">סיכום</h3>
+<div class="sumbody">
+  <h3 class="tp">בני נוער</h3>
+  <p>המטרה: להפסיק את העבירה בלי לסמן את הנער כעבריין, ולהחזיר אותו לדרך. קטין = עד גיל 18.</p>
+  <div class="add">
+    <ul>
+      <li><b>עובדי נוער</b>: שוטרים מיוחדים לנוער. בלבוש אזרחי, ברכב לבן ובחדרים נפרדים, כדי לא לסמן את הנער.</li>
+      <li><b>כמתנדב, אתה לא מטפל בבני נוער בלי שוטר.</b> נתקלת? מפסיקים את העבירה, מדווחים לקצין המשמרת, ומזעיקים שוטר.</li>
+    </ul>
+  </div>
+  <div class="tw"><table>
+    <thead><tr><th></th><th>לא בר עונשין (עד גיל 12)</th><th>בר עונשין (12 עד 18)</th></tr></thead>
+    <tbody>
+      <tr><td><b>עיכוב</b></td><td>רק לבירור פרטים. ברכב ״לבן״. אם הזהות ידועה, <b>אין עיכוב בכלל</b>: רושמים דו״ח פעולה ומעדכנים את קצין הנוער</td><td>כמו בגיר</td></tr>
+      <tr><td><b>מעצר</b></td><td><b>אסור</b> (ראה הערה למטה)</td><td>כמו בגיר, עם כללים פנימיים</td></tr>
+      <tr><td><b>כוח</b></td><td>אין סמכויות נלוות. אבל כדי להפסיק תקיפה מותר כוח סביר, מכוח החובה למנוע עבירות</td><td>כמו בגיר</td></tr>
+    </tbody>
+  </table></div>
+  <div class="add">
+    <ul>
+      <li>מילד מתחת לגיל 12 לא גובים עדות באזהרה — רק <b>עדות פתוחה</b>. הוא לא יעמוד לדין.</li>
+      <li>הוא עם אמו או אביו? <b>לא עוצרים.</b> רושמים פרטים ומשחררים איתם.</li>
+    </ul>
+  </div>
+  <ul>
+    <li>כללי מעצר קטין: מעצרים <b>יזומים</b> רק עובדי נוער · בלי לעורר תשומת לב · לא בבית ספר, במקום עבודה או במקום מפגש · עדיף לא בלילה · ברכב ״לבן״ · <b>אף פעם לא באותו רכב עם עצור בגיר</b>.</li>
+    <li><b>כבילה</b>: ככלל לא. מותר באישור קצין, ורק אם: עלול לברוח · אלים או פוגע בעצמו · עלול להשמיד ראיות · ברח בעבר · ביצע פשע שסיכן חיים. <b>כבלי רגליים: לא מתחת לגיל 16</b>.</li>
+    <li><b>חיפוש בבית קטין</b>: התייעצות מראש עם קצין נוער · <b>הורה חייב להיות נוכח</b> · לא בלילה · לא בבית הספר.</li>
+    <li><b>כליאה</b>: עד גיל 14 — עד <b>12 שעות</b>. מגיל 14 — עד <b>24 שעות</b>, כמו בגיר. אף פעם לא עם בגיר. מודיעים להורים מוקדם ככל האפשר, ולסנגוריה הציבורית לפני החקירה.</li>
+    <li><b>טביעות אצבע</b> מעל גיל 12, <b>צילום</b> רק מגיל 14.</li>
+    <li><b>קטין נזקק</b> (אין מי שמשגיח עליו, משוטט, פושט יד, נולד עם תסמונת גמילה): מעבירים ליחידת הנוער, והיא מערבת פקיד סעד.</li>
+    <li>שוטר נכנס לבית ספר בלי הסכמת המנהל רק אם: מתבצעת שם עבירה והוא בא להפסיק אותה · רודף אחרי חשוד שנמלט פנימה · הוא מפקד מש״ק או עובד נוער עם אישור קבוע. מתנדב שבא להרצות: צריך אישור ממפקדיו וממנהל בית הספר.</li>
+  </ul>
+  <div class="add">
+    <ul>
+      <li>קטין מעוכב לתחנה: מעבירים לחוליית הנוער (אם אין — לחוקר התורן), ומודיעים להורים. דחיית ההודעה להורים — רק באישור קצין.</li>
+      <li>אחרי שחרור קטין מוודאים איך הוא מגיע הביתה, במיוחד בלילה.</li>
+    </ul>
+  </div>
+
+  <h3 class="tp">זירת עבירה</h3>
+  <ul>
+    <li><b>זירה סטטית</b>: מתחילה ונגמרת באותו מקום, וכל הראיות שם (פורץ שנתפס על חם). <b>זירה דינמית</b>: מתפרשת על כמה מקומות. <b>זירה חיצונית</b>: השטח מסביב, כולל דרכי הגעה ובריחה.</li>
+    <li>הסדר: <b>הצלת חיים ← עיכוב או מעצר חשודים ← דיווח מדויק למוקד ← שמירה על הזירה ← התרשמות בחושים (אור, ריח, רעש) ← איסוף מידע ורישום הנוכחים</b>.</li>
+    <li>סוגרים <b>בהיקף הרחב</b>, לא צמוד למקום. אין סרט סימון? חפצים <b>מחוץ</b> לזירה (חביות, אבנים, עציצים). <b>אף פעם לא בראיות.</b></li>
+    <li>רושמים כל מי שנכנס, כולל שוטרים ומד״א, עם שעות. משאירים <b>ציר פנוי</b> לכוחות הצלה. נכנסים ויוצאים באותו מסלול.</li>
+    <li>איסוף ראיות: אנשי מז״פ וחוקרים. רק אם לא מגיעים, ובאישור קצין חקירות: מצלמים, תופסים בכפפות, ורושמים מזכר על כל צילום.</li>
+    <li><b>נשק בזירה: לא נוגעים</b>, גם אם יש כדור בקנה. רק אם יש חשש שמישהו ייקח אותו: תופסים בזהירות ומעבירים מהר לשוטר.</li>
+    <li>חשוד בזירה: מותר לשאול על <b>מעשיו במקום</b>, <b>לא על העבירה</b> (זה דורש אזהרה, ולמתנדב אסור). טלפון שנתפס: <b>מתארים, לא פותחים</b>. מפרידים חשודים, לוקחים טלפונים ותעודות.</li>
+    <li>זירה כפרית: מגיעים קודם <b>למודיע</b>, הולכים על אספלט, מחפשים עקבות צמיגים ומצלמות של שכנים.</li>
+  </ul>
+  <div class="add">
+    <ul>
+      <li>תפסת חשוד? <b>אל תשכח את הראיות.</b> מצאת ראיה? המשך לחפש, כנראה יש עוד. בלי ראיות — אין כתב אישום.</li>
+      <li>מה מקלקל זירה: להוסיף עקבות · לטשטש · להעלים · לערבב ראיות · להתעלם · לא לסמן מיד. גם יותר מדי שוטרים בזירה מטשטשים.</li>
+      <li>מצלמים ראיה <b>עם סרגל</b>, בשביל קנה מידה. עקבות צמיגים: מצלמים ומודדים את המרחק בין הצמיגים.</li>
+      <li>דנ״א וטביעות אצבע אפשר למצוא על בקבוק, כוס, בדל סיגריה, מסטיק, כפפה.</li>
+      <li>נגעת במשהו בזירה? כותבים <b>מזכר</b>, ומוסרים את שמך לטכנאי.</li>
+      <li>שטח פתוח: לא מרימים אבנים ביד (נחשים, עקרבים) — משתמשים במוט. דם: כפפות, בלי מגע.</li>
+      <li>רכב לא מוכר בלילה בדרך חקלאית: מתייחסים אליו כחשוד. קוראים לתגבורת ובודקים את מספר הרישוי במסוף לפני שעוצרים אותו.</li>
+    </ul>
+  </div>
+
+  <h3 class="tp">תפיסת מוצגים</h3>
+  <ul>
+    <li>״כל מגע משאיר עקבה״. <b>חפץ</b> = גם בעל חיים, חומר מחשב, מסמך, זכות כספית. <b>לא</b> גופת אדם.</li>
+    <li>תופסים כשיש יסוד סביר ש: נעברה בו עבירה · הוא עשוי לשמש ראיה · ניתן כשכר על עבירה או כאמצעי לביצועה.</li>
+    <li>מיד אחרי התפיסה: <b>סימון ← תיעוד בדו״ח ← צילום או תרשים ← ספירה או שקילה ← הובלה לתחנה</b>. מצלמים <b>לפני</b> שנוגעים. חריג: <b>סם</b> — קודם תופסים לפני שייבלע, אחר כך מתעדים.</li>
+    <li>סכין: תופסים בכפפות, בקצה הידית. אורזים בקלמר קשיח, בלי ללחוץ משני הצדדים, ועוטפים בשקית כחולה. כל חפץ בנפרד.</li>
+    <li><b>סימון</b>: ראשי תיבות של התופס ומספר לפי הסדר. אריק שלמה: <b>א.ש 1, א.ש 2</b>.</li>
+    <li><b>דו״ח תפיסה וסימון</b>: מה החפץ, איפה בדיוק נמצא, באיזה אירוע, של איזה חשוד, ולמי הועבר. בלי הדו״ח, למוצג כמעט אין משקל בבית המשפט.</li>
+    <li><b>השמדת מוצג</b>: רק קצין אח״מ מרחבי, או צו של בית משפט. צילום לבד לא מספיק.</li>
+    <li><b>שרשרת סם</b>: הדו״חות שמראים את מסלול החומר מהתפיסה ועד בית המשפט. חוליה חסרה = זיכוי.</li>
+    <li>מתנדב תופס, רושם ומעביר לחוקר התורן או לראש המשמרת. <b>משם והלאה הוא לא נוגע במוצג.</b></li>
+  </ul>
+  <div class="add">
+    <ul>
+      <li>מותר להשמיד מיד רק תפוס שהחוק מתיר, כמו אלכוהול — ורושמים דו״ח על התפיסה וההשמדה.</li>
+      <li>מתעדים לפני תפיסה: <b>צילום, תרשים, או זיכרון דברים</b>.</li>
+      <li>חבלה: מצלמים ומתארים צבע וגודל (״סימן סגול בקוטר 2 ס״מ״), לא ״חבלה קשה״.</li>
+      <li>כפפות <b>חדשות</b> לכל זירה, כדי לא להעביר דנ״א מזירה לזירה.</li>
+    </ul>
+  </div>
+
+  <h3 class="tp">המתנדב כעד בבית משפט</h3>
+  <ul>
+    <li>בית המשפט יכול: לזמן כל אדם · לצוות על מי שבאולם להעיד · לגבות עדות בכל מקום · לקנוס או לאסור מי שלא הגיע · לקבל מסמך רשמי כראיה.</li>
+    <li>לא יכול להגיע? מודיעים לתובע ומגישים בקשה לבית המשפט עם מספר התיק, שם השופט ואישורים. <b>פטור רק אם השופט אישר בכתב.</b> שתי הזמנות לאותו יום: מודיעים לשני בתי המשפט, והם יקבעו.</li>
+    <li>לפני העדות: מרעננים זיכרון מהדו״חות שכתבת, עם התובע. <b>אסור</b> לדבר עם הסנגור או הנאשם בלי אישור, ואסור לדבר עם עדים אחרים על העדות.</li>
+    <li><b>שאלות מדריכות מותרות רק בחקירה הנגדית</b> (של הצד שכנגד). בחקירה הראשית לא. בחקירה החוזרת רק על מה שעלה בנגדית.</li>
+    <li>עונים קצר, רק על מה שיודעים בוודאות, ומסתכלים על השופט. <b>לא זוכר? אומרים ״לא זוכר״.</b> עדות שקר היא עבירה פלילית.</li>
+    <li>מתנדב שעובד במדים מגיע במדים. בלי מדים: לבוש אזרחי צנוע. העדות נרשמת ביומן ההפעלה. תשלום על הפסד השתכרות: <b>הופעה אחת ביום</b>, גם אם העדת בכמה תיקים.</li>
+  </ul>
+  <div class="add">
+    <ul>
+      <li>מזמנים אותך אם: מילאת דו״ח פעולה או תנועה, תפסת מוצג, רשמת מזכר, תרגמת או תמללת. לכן <b>הדו״ח חייב להיות מדויק ואמיתי</b> — לפיו תעיד, גם אחרי זמן רב.</li>
+      <li>קיבלת הזמנה: חותמים עליה, רושמים ביומן, מודיעים למעסיק, מגיעים בזמן ומרעננים זיכרון עם התובע.</li>
+      <li>בחקירה הנגדית ישאלו: איך זוהה החשוד, איפה נמצאו המוצגים, איפה עמדת, מה היו התאורה והמרחק, האם היה שימוש בכוח, האם הובטח משהו.</li>
+    </ul>
+  </div>
+
+  <h3 class="tp">הכוונת תנועה</h3>
+  <div class="key"><p><b>אחרי שלב א׳ אתה לא מוסמך לכוון תנועה.</b> מכווין תנועה הוא שוטר, או מתנדב תנועה שלב ב׳ שאושר בכתב. בלי מדים אי אפשר בכלל. חריג: כשחייבים להסדיר תנועה כדי להציל אדם.</p></div>
+  <ul>
+    <li><b>חובה לציית</b> להוראות ולאותות של מי שמוסמך, <b>גם כשהם סותרים רמזור או תמרור</b>. סדר הציות: שוטר ← רמזור ← תמרור.</li>
+    <li>מי נותן <b>אותות</b>: שוטר במדים, שוטר צבאי במדים, פקח עירוני במדים, עובד נתיבי ישראל או נתיבי איילון במדים. <b>הוראות</b> נותן גם שוטר שהזדהה בתעודת מינוי.</li>
+    <li>אות של שוטר מחייב <b>גם אם לא ניתן בדיוק</b>, כל עוד ברור מה הוא אומר.</li>
+    <li>״התקדם״: זרוע אחת או שתיים במקביל לכיוון התנועה, כף יד פתוחה. נהג שמגיע <b>מכיוון הגב</b> של השוטר — <b>עוצר</b>.</li>
+    <li>התערבות ברמזור, לפי הסדר: <b>פנייה למרכז הבקרה ← הפעלה ידנית מארון הרמזור ← הבהוב צהוב וכניסה לצומת</b>. אף פעם לא מכוונים נגד רמזור פועל.</li>
+    <li>חובה: <b>כובע, מדים, אפודה זוהרת תקינה, פנס בחושך</b>. לא אוכלים, לא מעשנים, לא מדברים בטלפון. שני שוטרים בצומת: רק אחד מחליט.</li>
+  </ul>
+  <div class="add">
+    <ul>
+      <li>אותות = סימן. הוראות = פקודה.</li>
+      <li>בצומת עם רמזור: בודקים את הרמזור ← עוצרים את כל הכיוונים ← מהבהב ← נכנסים בבטחה ← מזרימים ← יוצאים רק כשהרמזור חוזר לפעול. עומדים ב״מרכז הבטוח״ של הצומת, ולא עוצרים רכב כבד או איטי ראשון.</li>
+      <li>בתאונה: נותנים לתנועה לזרום בבטחה, ומסמנים את מקום התאונה. מי שמכוון אחראי: נהג שנכנס באדום בהוראת שוטר ונפגע — תבע גם את המשטרה.</li>
+    </ul>
+  </div>
+</div>
+
+<h3 class="tp sub" id="p3-traps">מלכודות ומספרים</h3>
+<div class="sumbody">
+  <div class="traps">
+    <div class="trap"><div class="tn">1</div><div class="tb"><p class="bad">״הילד בן 11 נתן את הפרטים, נעכב אותו לתחנה בכל זאת״</p><p class="good">לא בר עונשין + זהות ידועה = <b>אין עיכוב בכלל</b>. דו״ח פעולה, עדכון קצין הנוער.</p></div></div>
+    <div class="trap"><div class="tn">2</div><div class="tb"><p class="bad">״קודם מצלמים, אחר כך תופסים — תמיד״</p><p class="good">כמעט תמיד. <b>חריג: סם</b> שעלול להיבלע או להיזרק. קודם תופסים, אחר כך מתעדים.</p></div></div>
+    <div class="trap"><div class="tn">3</div><div class="tb"><p class="bad">״הסנגור שאל אותי שאלה מדריכה, זה לא חוקי״</p><p class="good">בחקירה <b>הנגדית</b> מותר לשאול שאלות מדריכות. בראשית אסור.</p></div></div>
+    <div class="trap"><div class="tn">4</div><div class="tb"><p class="bad">״עברתי קורס, אז אני מכוון תנועה״</p><p class="good">שלב א׳ <b>לא מסמיך</b> להכוונת תנועה.</p></div></div>
+  </div>
+  <div class="add">
+    <div class="traps">
+      <div class="trap"><div class="tn">5</div><div class="tb"><p class="bad">״אנחנו שני מתנדבים, נטפל בנער שמשחית ספסל״</p><p class="good">מתנדבים <b>לא מטפלים בבני נוער בלי שוטר</b>. מפסיקים את העבירה, מדווחים, ומזעיקים שוטר.</p></div></div>
+      <div class="trap"><div class="tn">6</div><div class="tb"><p class="bad">״נחקור את הילד בן ה־10 באזהרה, כמו כל חשוד״</p><p class="good">ילד מתחת ל־12 לא יעמוד לדין. <b>עדות פתוחה בלבד</b>.</p></div></div>
+      <div class="trap"><div class="tn">7</div><div class="tb"><p class="bad">״נגעתי בבקבוק בזירה, לא נורא״</p><p class="good">כותבים <b>מזכר</b> ומוסרים את שמך לטכנאי. אחרת יחפשו את טביעת האצבע שלך בין החשודים.</p></div></div>
+    </div>
+  </div>
+  <div class="tw"><table>
+    <thead><tr><th>מה</th><th>המספר</th></tr></thead>
+    <tbody>
+      <tr><td>קטין לא בר עונשין</td><td class="num">עד 12</td></tr>
+      <tr><td>כליאת קטין</td><td class="num">עד 14: 12 שעות · מ־14: 24 שעות</td></tr>
+      <tr><td>כבלי רגליים לקטין</td><td class="num">לא מתחת ל־16</td></tr>
+      <tr><td>טביעות אצבע · צילום קטין</td><td class="num">מעל 12 · מגיל 14</td></tr>
+      <tr><td>תשלום על עדות</td><td class="num">הופעה אחת ביום</td></tr>
+    </tbody>
+  </table></div>
+  <div class="note">
+    <p><b>שים לב: בחומר יש שתי גרסאות לילד מתחת ל־12 שמסרב לעיכוב.</b> באחת — אסור לעצור אותו בשום מקרה. בשנייה, המעודכנת — אם לא יודעים מי הוא, מותר לעצור ולהביא לתחנה לבירור פרטים. כדאי לשאול את מפקד הקורס.</p>
+  </div>
+</div>
+
+<h3 class="sec-title" id="p3-q">מבחן אמריקאי <span class="cnt" data-cnt="3"></span></h3>
+<div class="qlist" data-q="3"></div>
+
+<h3 class="tp sub" id="p3-cases">תרחישים מהשטח</h3>
+<div class="case">
+  <p class="ct">תרחיש · תפיסת מוצגים</p>
+  <h4>הסכין ליד הפצוע</h4>
+  <p>דוד ותומר, מתנדבים, בסיור לילה ברחוב הומה. הם רואים התקהלות, ועוצרים לבדוק. חלק מהאנשים בורחים. על המדרכה שוכב בחור מדמם מהראש, ולידו סכין מגואלת בדם.</p>
+  <p>תומר חושש שמישהו ייגע בסכין. הוא מרים אותה ביד ומכניס לניידת. דוד מדווח בקשר. מגיעים בלשים. תומר, בלחץ, מספר להם על ההתקהלות ועל הפצוע, אבל שוכח לספר על הסכין. המתנדבים עוזבים.</p>
+  <p class="cq">מה תומר עשה לא נכון, ומה היה צריך לעשות?</p>
+  <details><summary>הצג ניתוח</summary><div class="ans"><p><span class="c">ארבע טעויות.</span><span class="why">
+  <b>1. נגע בלי לתעד.</b> היה צריך קודם לצלם את הזירה ואת מיקום הסכין, ולהקפיא מצב עד שמגיע איש מז״פ.<br>
+  <b>2. תפס ביד חשופה.</b> אם באמת היה חשש שמישהו ייקח את הסכין, מותר לתפוס, אבל עם כפפות ובקצה הידית.<br>
+  <b>3. לא העביר ולא סיפר.</b> היה צריך למסור את הסכין לבלש ולומר לו מאיפה היא.<br>
+  <b>4. לא כתב דו״ח תפיסה וסימון:</b> מספר אירוע, שעה, כתובת, תיאור הסכין, איפה בדיוק נמצאה, איך נתפסה, ולמי הועברה.<br>
+  בלי כל אלה, הסנגור יטען שאין קשר בין הסכין לחשוד, ובית המשפט עלול לזכות.</span></p></div></details>
+</div>
+<div class="case">
+  <p class="ct">תרחיש · זירת עבירה</p>
+  <h4>הדירה שנפרצה</h4>
+  <p>בסיור שגרתי אדם מסמן לכם לעצור. הוא אומר שהרגע חזר הביתה וגילה שפרצו לו. בחדר השינה הבגדים והמגירות זרוקים על הרצפה. בכניסה לבית אתם רואים בדל סיגריה, ובשיחים ליד השביל כפפה חד־פעמית ומברג.</p>
+  <p class="cq">מה עושים, ובאיזה סדר?</p>
+  <details><summary>הצג ניתוח</summary><div class="ans"><p><span class="c">אין כאן הצלת חיים, ולכן מתחילים בדיווח ובשמירה על הזירה.</span><span class="why">
+  <b>1.</b> מדווחים למוקד ולקצין היחידה, ומבקשים לעדכן את טכנאי הזיהוי.<br>
+  <b>2.</b> מזהים את המתלונן לפי תעודת זהות, ומוודאים שהבית באמת שלו.<br>
+  <b>3.</b> מבקשים ממנו לא לגעת בשום דבר ולחכות בחוץ.<br>
+  <b>4.</b> שואלים מתי יצא ומתי חזר, והאם הוא חושד במישהו.<br>
+  <b>5.</b> סורקים בזהירות מסביב לבית: עוד סימני פריצה, עקבות, מצלמות של שכנים.<br>
+  <b>6.</b> הבדל, הכפפה והמברג: <b>לא נוגעים</b>. מסמנים אותם. ייתכן שיש עליהם דנ״א וטביעות אצבע.<br>
+  <b>7.</b> הטכנאי מגיע? שומרים על הזירה ומחכים. לא מגיע? מצלמים, ורק לפי הנחייתו תופסים, בכפפות.<br>
+  <b>8.</b> בתוך הבית: נכנסים ויוצאים באותו מסלול, נוגעים מינימום.<br>
+  <b>9.</b> דו״ח פעולה מפורט, ודו״ח תפיסה וסימון על כל מה שנתפס.</span></p></div></details>
+</div>
+<div class="case">
+  <p class="ct">תרחיש · עדות בבית משפט</p>
+  <h4>הסנגור בחקירה הנגדית</h4>
+  <p>לפני שנה וחצי היית במעצר של פורץ. עכשיו אתה עד. בחקירה הנגדית הסנגור שואל: ״היה חושך, נכון? אתה לא באמת יכול להיות בטוח שזה הנאשם. ונכון שהשוטר אמר לך מה לכתוב בדו״ח?״ הוא מרים את הקול ומדבר מהר.</p>
+  <p class="cq">איך מתנהגים?</p>
+  <details><summary>הצג ניתוח</summary><div class="ans"><p><span class="c">רגוע, קצר, רק עובדות, ומול השופט.</span><span class="why">
+  <b>לפני:</b> ריענון זיכרון מדו״ח הפעולה שכתבת, יחד עם התובע.<br>
+  <b>בזמן:</b> הסנגור עושה את העבודה שלו, לא נגדך אישית. מותר לו לשאול שאלות מדריכות, זו חקירה נגדית.<br>
+  מחכים שהשאלה תסתיים, וחושבים. עונים <b>רק</b> על מה שנשאל, קצר, ומסתכלים על השופט. על התאורה והמרחק — לפי מה שכתוב בדו״ח ומה שאתה זוכר בוודאות.<br>
+  <b>לא זוכר?</b> אומרים ״לא זוכר״, ומבקשים לרענן זיכרון מהדו״ח.<br>
+  <b>״השוטר אמר לך מה לכתוב?״</b> עונים את האמת: דו״ח נכתב לבד, ממה שראית.<br>
+  לא נגררים לוויכוח. אם הוא פוגע, מבקשים את עזרת בית המשפט.</span></p></div></details>
+</div>
+</section>
+
+<footer>
+  <p>מבוסס על 15 מצגות הכשרת יח״ם סיור שלב א׳ ועל המקראה של הקורס. זהו חומר תרגול, לא שאלון המבחן עצמו.</p>
+</footer>
+</main>
+
+<div class="scorebar" role="region" aria-label="ציון">
+  <div class="in">
+    <span class="pct" id="pct">—</span>
+    <span class="st" id="st">עוד לא ענית על שאלות</span>
+    <span class="btns">
+      <button type="button" class="btn" id="onlyWrong" aria-pressed="false">רק טעויות</button>
+      <button type="button" class="btn" id="reset">התחל מחדש</button>
+    </span>
+  </div>
+</div>
+
+<script>
+/* כל שאלה: [שאלה, [4 תשובות], אינדקס נכון, הסבר, 1 = נוסף לאחר ההערה] */
+const DATA={
+1:[
+["מהי מטרת העל של הכשרת סיור שלב א׳?",["להכשיר את המתנדב לסייר בניידת לבד, בלי שוטר","שהמתנדב יסייע למשטרה בתחום השיטור, באג״ם של התחנה","להכשיר את המתנדב לחקור חשודים בזירה","להכשיר את המתנדב לפקד על מחסום"],1,"מילת המפתח היא שוב <b>לסייע</b>. סיור בלי שוטר שמור לבוגרי שלב ב׳."],
+["איזו מהבאות <b>אינה</b> אחת ממטרות הקורס?",["שהמתנדב ישמור על זירת עבירה","שהמתנדב יתפוס מוצגים לפי הנוהל","שהמתנדב יעיד בבית משפט","שהמתנדב יפקד על מחסום"],3,"פיקוד על מחסום — שוטר קבע בלבד."],
+["מהו ציון המעבר במבחן המסכם, ומה קורה למי שנכשל?",["60. מי שנכשל חוזר על כל הקורס","80. מועד ב׳ תוך שבוע","70. מועד ב׳ עד שלושה שבועות מהמבחן הראשון","70. אין מועד ב׳"],2,"כישלון שני פירושו הכשרה נוספת. ערעור על הציון: תוך 3 ימי עבודה, למפקד הקורס."],
+["מתי מתנדב נחשב ״במילוי תפקידו״?",["כשהוא לובש מדים","כשהוא נמצא בשטח התחנה","כשהוא זומן לפעילות, נרשם ביומן ההפעלה ובשירת הסירנה, ותודרך","כשהוא הודיע למפקד הניידת שהוא מצטרף"],2,"שלושת התנאים ביחד. מתנדב לא יכול ״להכניס״ את עצמו לפעילות. מתנדב שלא בתפקיד — סמכויותיו כשל אזרח."],
+["מה נחשב ״בנוכחות שוטר״?",["השוטר איתו פיזית, או בפיצול רגעי ממנו","השוטר זמין בקשר","השוטר אישר בטלפון את הפעולה","השוטר נמצא באותה משמרת בתחנה"],0,"״פיצול רגעי״: למשל, השוטר ניגש לרכב השני לכמה שניות. קשר או טלפון אינם נוכחות."],
+["מתנדב בוגר שלב א׳ — איך הוא פועל, ומה סמכויותיו?",["בנוכחות שוטר ולשם סיוע לו, וסמכויותיו כשל שוטר","בלי שוטר, וסמכויותיו כשל שוטר בסייגים","בתחום מומחיות מקצועית, בלי סמכויות","רק נגד פעולות איבה"],0,"בוגר שלב א׳ פועל <b>עם שוטר</b>, ומוסמך לטפל איתו בכל אירוע. עבודה בתחום הפלילי בלי שוטר — רק בוגרי שלב ב׳."],
+["לאיזה אירועים מותר לשלוח מתנדב בוגר שלב א׳?",["רק ל־14 האירועים שבנוהל, גם לבד","לכל אירוע — אבל רק יחד עם שוטר","רק לאירועי תנועה","לאף אירוע פלילי"],1,"רשימת 14 האירועים שייכת לשלב ב׳: לשם שולחים שני מתנדבים בלי שוטר. שלב א׳ לא נשלח לבד לשום אירוע."],
+["״המצב השלישי״ הוא...",["מתנדב שפועל נגד פעולות איבה","מתנדב שפועל בנוכחות שוטר","מתנדב שפועל בלי שוטר בתחום הפלילי — סמכויות של שוטר, חוץ מסייגים לגבי מעצר","מתנדב מקצועות, בלי סמכויות"],2,"מצב שלישי = בוגרי שלב ב׳ בניידת בלי שוטר, או מתנדב קלאסי שנתקל באירוע פלילי. אתה, בשלב א׳, נמצא במצב השני — עם שוטר."],
+["מתנדב פועל בלי שוטר, בתחום הפלילי. באיזו עבירה <b>אין</b> לו סמכות מעצר?",["תקיפה שראה מול עיניו","גניבת ארנק שראה מול עיניו","התפרצות לרכב שראה לפני שעה","החזקת סמים שראה מול עיניו"],3,"אין סמכות מעצר בעבירות <b>סמים</b>, <b>מין</b> שלא כרוכות באלימות, ו<b>מרמה והונאה</b>. בהן יש רק עיכוב: בדיקת מסמכים, תחקור ותפיסת ראיות."],
+["מתנדבים בלי שוטר עיכבו אדם בחשד לאיומים. הוא מסרב לחכות, מנסה ללכת, ולא ידוע מי הוא. מה הדין?",["אין סמכות לעצור, כי איומים אינם ברשימת העבירות","עוצרים רק אם קצין מאשר בטלפון","משחררים אותו ורושמים דו״ח","יש סמכות לעצור ולהביא לתחנה, כי הוא לא מציית לעיכוב ויש חשש שיימלט"],3,"המעצר הוא בגלל <b>אי־הציות לעיכוב</b>, לא בגלל סוג העבירה. לעכב מותר בכל עבירה פלילית."],
+["מהו הסדר הנכון בנוהל מעצר ע״י מתנדב שפועל בלי שוטר?",["מעצר ← דיווח למוקד ← המתנה לשוטר ← הובלה לתחנה","דרישה להתלוות לתחנה ← סירוב ← דרישה לחכות לשוטר ← מעצר","דרישה לחכות לשוטר ← השוטר לא יכול להגיע בזמן סביר ← דרישה להתלוות לתחנה ← סירוב","אזהרה ← עיכוב ← כבילה ← מעצר"],2,"החריג: אם החשוד <b>תוקף או מנסה לברוח</b> ולא מאפשר לקיים את השלבים, עוצרים ישירות."],
+["מתנדבים עצרו חשוד בעצמם, בלי שוטר. מה הדין לגבי ההובלה שלו?",["אסור להם ללוות עצור בשום מקרה","הם ממשיכים לשמור עליו גם בתחנה, עד סוף החקירה","הם מלווים אותו גם לדיון בבית המשפט","זה המקרה היחיד שבו מתנדב מלווה ושומר על עצור עד התחנה, ושם שוטר לוקח אחריות מיד"],3,"ואם מגיעה ניידת למקום, היא זו שלוקחת את העצור לתחנה."],
+["צוות מתנדבי סיור עיכב חשוד בכייסות. הם התקשרו לקצין התורן, והוא הנחה לעצור את החשוד ולהביא אותו מיד לתחנה. מה הבעיה בהנחיה?",["צריך קודם להסתפק בעיכוב ולנסות להביא שוטר למקום, ורק אחר כך להחליט על מעצר","כייסות אינה ברשימה, אז אין סמכות בכלל","אין בעיה. קצין יכול להורות על מעצר בכל מקרה","היה צריך לשחרר את החשוד מיד"],0,"כייסות היא גניבה, והיא ברשימה. אבל גם אז הולכים לפי הנוהל: קודם עיכוב, וניסיון להביא שוטר."],
+["הקש״ק מבקש מקצין המתנדבים לשבץ מתנדב אבטחה יחד עם שוטר סיור, כדי לפתוח עוד ניידת סיור. מה הדין?",["מותר, כי יש שוטר בניידת","מותר רק בלילה","לא נכון. מתנדב אבטחה לא עבר הכשרת סיור","מותר אם המתנדב ותיק"],2,"הכשרה בסיסית בלבד לא מאפשרת לשבץ בסיור, גם לצד שוטר."],
+["למה מכוונים מתנדב אבטחה (קלאסי)?",["למניעת פעולות איבה בלבד","לסכסוכי שכנים","לוונדליזם ועבירות רכוש","לכל אירוע שמגיע ל־100"],0,"אבל אם נתקל באירוע פלילי <b>דרך אגב</b>, הוא רשאי לטפל בו טיפול ראשוני עד הגעת שוטר."],
+["מהו גיל הגיוס למתנדב יח״ם, ואיזו הכשרה הוא צריך?",["18–70, קורס בסיסי בלבד","25–55, קורס בסיסי ושלב ב׳","21–64, קורס בסיסי ועוד הכשרת שלב א׳","16–64, הכשרת שלב א׳ בלבד"],2,"גיוס: 21 עד 64."],
+["מה צריך מתנדב כדי לצאת לפעילות מבצעית?",["רק מדים","לסיים את הליכי הגיוס וההכשרה, ותעודת מינוי קבועה או זמנית","אישור של המפכ״ל","ותק של שנה"],1,"ובזמן הפעילות עצמה — זומן, נרשם ותודרך."],
+["מהו מינימום הפעילות של מתנדב סיור?",["4 שעות בחודש","משמרת אחת בחודש של 7 שעות רצופות, או 10 שעות במצטבר כשכל פעילות היא 3 שעות רצופות לפחות","16 שעות בחודש","משמרת אחת בשבוע"],1,"4 שעות בחודש זה המינימום של <b>מתנדב אבטחה</b>."],
+["כמה שעות ברצף מותר למתנדב לפעול?",["9.5 שעות כולל חצי שעה הפסקה, ועד 12 באישור חריג של קצין המתנדבים","8 שעות, ועד 10 באישור","12 שעות, ועד 16 באישור","אין מגבלה כל עוד הוא ערני"],0,"ועד 5 ימים בשבוע."],
+["אתה בוגר שלב א׳. מותר לך לסייר בניידת עם שוטר שח״מ (שירות חובה)?",["כן, כל שוטר מתאים","כן, אם הוא מפקד הניידת","לא. אתה עובד רק עם שוטר קבע","כן, אבל רק ביום"],2,"שח״מ עם מתנדב — רק עם מתנדב שלב ב׳ ותיק, באישור מיוחד. לא בשלב א׳."],
+["בליווי עצורים, מה מותר למתנדב?",["לשבת מאחור ליד העצור","לשמור על העצור בתא","רק לנהוג ברכב שמסיע את העצורים","ללוות עצור לבית משפט יחד עם שוטר"],2,"למתנדב אין שום מגע פיזי עם עצור. החריג היחיד: עצור שהמתנדב עצר בעצמו בלי שוטר, ואותו הוא מביא לתחנה."],
+["בבוקר, קצין החקירות מבקש מתנדב שיעביר למעבדה שקית סם שמתנדבים תפסו בלילה, כי אין שוטר פנוי. מה הדין?",["אסור. מתנדבים לא מעבירים מוצגים מהתחנה הלאה","מותר, כי מתנדבים הם שתפסו","מותר באישור קצין המתנדבים","מותר אם התחנה עמוסה"],0,"מתנדבים שתפסו חומר חשוד מביאים אותו <b>לתחנה</b>. משם הלאה הם לא מעבירים אותו."],
+["מי יכול להיות מפקד מחסום?",["מתנדב בוגר שלב ב׳","כל שוטר, כולל שוטר בשירות חובה","שוטר קבע בלבד","מי שהגיע ראשון למקום"],2,"ומתנדבים לא משתתפים במחסום בלי תדריך."],
+["מתנדבים בני נוער משתתפים במחסום. מה מותר להם?",["לבדוק נהגים ותעודות","לפקד על המחסום","רק לאבטח את מי שבודק","לעצור חשודים"],2,"בני נוער לא בודקים אנשים במחסום, ולא משתתפים בפעילות יזומה נגד פשיעה."],
+["המת״ח מבקש לשלוח ניידת מתנדבים להפגנה מאושרת, כי ״זה אירוע קל״. מה הדין?",["מותר, כי ההפגנה באישור","מותר אם יש שוטר בניידת","אסור. מתנדבים לא מטפלים בהפגנות והפרות סדר, גם באישור וגם עם שוטר","מותר רק לבוגרי שלב ב׳"],2,"צריך לשלוח ניידת נוספת. נקלעת בלי תכנון לאירוע כזה? מדווחים, מקפיאים מצב, ויוצאים כשהכוחות מגיעים."],
+["מתנדבי אבטחה ראו שוד אלים. השודד ברח ברכבו ועבר באדום. הם רוצים לרדוף אחריו ברכב הפרטי. מה הדין?",["אסור. מתנדבי אבטחה לא מבצעים מרדף, ואף מתנדב לא רודף ברכב פרטי","מותר, כי זה שוד אלים","מותר אם מדליקים פנס כחול","מותר באישור קצין תורן בקשר"],0,"מרדף מותר רק לבוגרי שלב ב׳, במדים, <b>ברכב משטרה</b>, בחשד לפשע חמור, ובאישור קצין."],
+["מהו הגיל המקסימלי של רכב פרטי שמשמש לפעילות במשמר האזרחי?",["7 שנים","10 שנים","15 שנים","אין הגבלה"],2,"בנוסף: ביטוח חובה וצד ג׳, מבחן רישוי, בלי שום פרסומת."],
+["מה המשמעות של פנס כחול מהבהב על רכב פרטי של מתנדב?",["הרכב הופך לרכב ביטחון ומותר לו לחרוג מחוקי התנועה","מותר לרדוף בו אחרי חשוד מסוכן","מותר להוסיף לו גם מערכת כריזה","הפנס הוא רק לנוכחות, בולטות והרתעה. הרכב לא הופך לרכב ביטחון"],3,"אסור להתקין כריזה ברכב פרטי, ואסור לרדוף בו."],
+["סיור ברכב לא משטרתי שמשתתפים בו נערים. מה הכלל?",["מבוגר אחד על כל שני נערים, ולא יותר משני נערים ברכב","מבוגר אחד על כל ארבעה נערים","אסור לשתף נערים בכלל","מותר בלי הגבלה, גם ברכב שטח"],0,"ואסור לשתף בני נוער בסיור ברכב שטח."],
+["מתנדבים נתקלו באירוע שבו מעורבים בני נוער. מה עליהם לעשות?",["לעצור את הנערים ולהביא לתחנה","להפסיק את העבירה, לדווח לקצין המשמרת ולעדכן את קצין הנוער","לא להתערב, כי זה תפקיד של עובדי נוער","לחקור אותם במקום"],1,"בלי שוטר מתנדבים לא מטפלים בבני נוער מעבר לזה."],
+["מתנדבי אבטחה בסיור בגנים ראו שני צעירים שוברים חלון של רכב. הצעירים ברחו. המתנדבים צעקו ״משטרה, עצור!״, תפסו אותם, הודיעו שהם עצורים והזמינו ניידת. האם פעלו כחוק?",["לא. מתנדבי אבטחה לא מטפלים באירועים פליליים","כן, כי למתנדב יש סמכות מעצר בכל עבירה","לא. היה עליהם רק לעכב","כן. הם נתקלו באירוע אגב פעילותם, נזק לרכוש ברשימת העבירות, והבריחה מנעה את שלבי הנוהל"],3,"נזק ממשי לרכוש נמצא ברשימה. הבריחה מנעה מהם לעכב, ולכן עברו ישר למעצר."],
+["שרה ואורי, מתנדבים שלב א׳, בסיור רגלי למניעת פח״ע. הם רואים גבר מכה גבר אחר. החשוד אומר שזה ויכוח עם הדוד שלו, והדוד אומר שהכול בסדר. הם מעכבים את החשוד ומזמינים ניידת. החשוד מסרב לחכות ומנסה ללכת, והם עוצרים וכובלים אותו. האם פעלו כחוק?",["לא, כי הנפגע אמר שהכול בסדר","לא, כי זה עניין משפחתי","כן. תקיפה היא עבירת אלימות שברשימה, והחשוד סירב לעיכוב","כן, כי מתנדב יכול לעצור בכל עבירה"],2,"אחרי שסירב לחכות, דורשים ממנו לבוא לתחנה. מאחר שסירב — המעצר חוקי."],
+["מתנדבים שלב א׳ בסיור למניעת פח״ע. נער בן 16 אומר להם שאחיו הגדול מאיים לרצוח אותו. הם ניגשים לאח ואומרים לו שהוא עצור בגין איומים. האם פעלו כחוק?",["כן, איום ברצח הוא עבירה חמורה","כן, כי קטין התלונן","לא. איומים לא ברשימה. היה עליהם לעכב, ולעצור רק אם היה מסרב לעיכוב או מנסה לברוח","לא, אסור להם לגשת לחשוד בכלל"],2,"הם פעלו בלי שוטר, ולכן היה צריך להסתפק בעיכוב."],
+["מתנדבים רדפו אחרי חוטף תיק שנכנס לחנות. בעל החנות סירב להכניס אותם ודחף אותם החוצה. הם עצרו אותו והמשיכו לחפש את החשוד. האם המעצר של בעל החנות חוקי?",["כן. הייתה להם סמכות כניסה כדי לבצע מעצר שהם מוסמכים לו, ובעל החנות תקף אותם ושיבש את המעצר","לא. מתנדבים לא נכנסים למקום פרטי","לא. בעל החנות רשאי לסרב למתנדבים","כן, כי כל מי שמסרב למתנדב נעצר"],0,"שוד = סמכות מעצר. כניסה למקום מותרת כשהיא נחוצה לביצוע המעצר."],
+["בזמן אבטחת אירועי קיץ, זוג מתנדבים ביקש מאדם עם תיק גב, שעומד וצופה בקהל, להזדהות ולפתוח את התיק. הוא סירב ״כי הם לא שוטרים״, והם הודיעו שהוא מעוכב. האם פעלו כחוק?",["לא. למתנדב אין סמכות לבקש תעודה","לא. היה עליהם לקרוא לשוטר","כן, אבל רק אם יש שוטר במקום","כן. זה חשד ביטחוני, ונגד פעולות איבה יש למתנדב סמכויות של שוטר"],3,"נגד פעולות איבה, לכל מתנדב יש סמכויות כשל שוטר, עם שוטר או בלעדיו."],
+["איזו מהפעולות הבאות <b>מותרת</b> למתנדב?",["לשמש זקיף בשער התחנה","לסייר בניידת יחד עם פקח עירוני","לתרגם חקירה של חשוד שלא דובר עברית","לתשאל תשאול ראשוני בזירה ולרשום אותו על מזכר"],3,"מתנדבים לא משמשים זקיפים, לא עובדים עם פקח, לא מתרגמים חקירה ולא גובים עדות."],
+["כל כמה זמן מתנדב יח״ם צריך לעבור מטווח?",["פעם בשנתיים","פעם בשנה","פעמיים בשנה","אף פעם, אם עבר בקורס"],1,"מתנדב אבטחה — פעם בשנתיים. כיתת כוננות — פעמיים בשנה."],
+["חיפוש ״בהסכמה״ מותר רק ב...",["חיפוש על הגוף ובכלים","חיפוש ברכב","כניסה למקום וחיפוש בטלפון נייד","כל חיפוש, אם האדם חתם"],2,"שום חיפוש אחר לא נעשה בהסכמה."],
+["״פשע חמור״ הוא עבירה שהעונש עליה...",["מעל 10 שנות מאסר","מעל 3 שנות מאסר","מעל 7 שנות מאסר","מאסר עולם בלבד"],0,"מעל 3 שנים זה ״פשע״ רגיל."],
+["אזרח רגיל ראה אדם תוקף מישהו ברחוב. מה מותר לו לפי החוק?",["לעצור אותו ולהחזיק בו עד הבוקר","לעכב אותו, בכוח סביר שלא גורם חבלה, ולמסור אותו לשוטר מיד","לחפש על גופו","שום דבר"],1,"מעצר אין לו. רק עיכוב."],
+["מתי עושים ״חיפוש מוגבל״ על אדם שעוכב?",["בכל עיכוב, כדי לחפש ראיות","רק באישור שופט","רק על מי שכבר נעצר","כשהמעוכב עולה לרכב משטרה או לאמבולנס, כדי לתפוס נשק או חפץ מסוכן"],3,"בחיפוש מוגבל לא מורידים בגדים, חוץ מכובע, כיסוי פנים ונעליים."]
+],
+2:[
+["מה תפקיד הסייר?",["חקירת עבירות וגילוין","העמדת עבריינים לדין","מניעת עבירות, תפיסת עבריינים, שמירה על הסדר הציבורי ועל ביטחון הנפש והרכוש","טיפול בעצורים בתחנה בלבד"],2,"חקירה — תפקיד החוקר. העמדה לדין — התובע."],
+["מי הוא ״מפקד ניידת״?",["המתנדב הוותיק בניידת","קצין המתנדבים","מי שנוהג בניידת","שוטר קבע אחרי קורס שוטרים, והוא בעל הדרגה הבכירה בניידת"],3,"מתנדב אף פעם לא מפקד ניידת."],
+["מהו ״זמן תגובה״?",["הזמן מקבלת השיחה במוקד ועד סוף האירוע","הזמן מרגע שהמשל״ט שיגר ניידת ועד שהניידת הראשונה הגיעה","הזמן שלוקח לכתוב את הדו״ח","הזמן מהגעת הניידת ועד המעצר"],1,"אירוע שהניידת עצמה זיהתה בשטח — אין לו זמן תגובה."],
+["אירוע קיצון בשטח עירוני. תוך כמה זמן צריכה ניידת להגיע?",["10 דקות","15 דקות","20 דקות","30 דקות"],0,"עירוני: קיצון 10, דחוף 15, רגיל 30. כפרי: 20, 30, 45."],
+["פריצה לדירה שהתגלתה בבוקר, אין חשודים ואין עדים במקום. איזו דרגת חומרה זו?",["קיצון","דחוף","רגיל","בלי זמן תגובה"],2,"<b>רגיל</b> = איחור לא יגדיל את הנזק. <b>דחוף</b> = כשיש חשודים או עדים במקום, או חשש להסלמה."],
+["איזה הרכב ניידת <b>אסור</b>?",["שני שוטרי קבע","שוטר קבע ומתנדב שלב א׳","שוטר קבע ושוטר שח״מ","שוטר שח״מ ומתנדב שלב א׳"],3,"שח״מ = שוטר בשירות חובה. מתנדב שלב א׳ עובד רק עם שוטר קבע."],
+["מתנדב שלב א׳ ומתנדב שלב ב׳ יוצאים יחד לסיור, בלי שוטר. איך הם פועלים?",["כמתנדבים קלאסיים (אבטחה) בלבד","כניידת מתנדבים עצמאית","כמו שוטרים לכל דבר","אסור להם לצאת יחד"],0,"ניידת מתנדבים בלי שוטר דורשת ששני המתנדבים יהיו בוגרי שלב ב׳."],
+["איזה מאלה <b>אינו</b> מתפקידי היומנאי בתחנה?",["קבלת קהל ופיקוח על מי שנכנס לתחנה","טיפול באבדות ומציאות","ניהול יומני התחנה ורישום ציוד ונשק","חקירת חשודים באזהרה"],3,"היומנאי מקבל תלונות או מפנה לחוקר, אבל לא חוקר."],
+["מהו ״אירוע יזום״?",["אירוע שאזרח דיווח עליו ל־100","פעילות שתוכננה מראש, כמו ביקורת מאוימים או מחסום פתע","אירוע שבו השוטר יזם מעצר","כל אירוע בשעות הלילה"],1,"אירוע <b>תגובה</b> = אזרח פנה, או שוטר ראה אירוע בשטח ופתח אותו."],
+["ביקור מאוימים וליווי עצור הם דוגמאות ל...",["מטלה","פעילות","משימה — פעולה מתוכננת שאי אפשר לבטל","אירוע תגובה"],2,"<b>פעילות</b> = אכיפה עם גמישות בזמן (מחסום יזום). <b>מטלה</b> = מנהלית (טיפול ברכב, מטווח)."],
+["מהן שעות השהייה המותרות בישראל לבעל היתר עבודה מהשטחים?",["06:00–21:00","07:00–17:00","05:00–19:00","כל היממה, אם יש היתר"],2,"בסוף יום העבודה חוזרים הביתה. לינה רק עם אישור לינה."],
+["מה ההגדרה של ״מפר תנאי רישיון״?",["מי שנכנס בלי היתר בכלל","מי שהעסיק שב״ח","מי שנהג בלי רישיון נהיגה","מי שיש לו היתר כניסה, והפר תנאי שכתוב בו"],3,"למשל: נשאר אחרי 19:00, או עבד אצל מעסיק אחר."],
+["מיהו ״עבריין מועד״ לפי חוק הכניסה לישראל?",["מי שהפר 5 פעמים תנאי רישיון, או נכנס 3 פעמים בלי היתר, או נכנס כשהוא מוגבל כניסה","מי שנתפס פעם אחת בלי היתר","מי שהורשע בעבירה פלילית בישראל","מי שעבד אצל יותר ממעסיק אחד"],0,"עבריין מועד, דרוש שב״כ או מוגבל כניסה — מעדכנים את קצין המודיעין ומביאים מיד לתחנה."],
+["מה נכון לגבי ״אישור זמני״ לשהייה?",["תקף לשנה","תקף בלי תעודת זהות","תקף רק ביום ההנפקה","תקף לזמן מוגדר, ותמיד רק יחד עם תעודת זהות"],3,"<b>אישור קבע</b> — תקף לשנה."],
+["יש חשד שההיתר שהשב״ח הציג מזויף. מה עושים?",["בודקים מול מנהלת התיאום והקישור (מת״ק), ומחרימים היתר מזויף","קורעים את ההיתר במקום","מחזירים לו ומשחררים","שולחים את ההיתר בדואר"],0,"מותר לתפוס כל מסמך שקשור לעבירה."],
+["לפני שמוציאים שב״ח מישראל, מה החוק מחייב?",["צו של שופט","הודעה למשפחה שלו","תשלום קנס במקום","שימוע בכתב אצל קצין בדרגת פקד ומעלה"],3,"תושבי עזה — למחסום ארז. תושבי יהודה ושומרון — למחסום הקרוב. במשמורת: בתא נפרד מעצורים פליליים."],
+["מה ההגדרה של ״מלין״?",["מי שמסיע שב״ח ברכב","מי שמעסיק שב״ח","מי שנתן ביודעין מקום לינה לשב״ח","מי שמזייף היתרים"],2,"מעסיק — מעסיק. מסיע — מסיע ברכב."],
+["מצאתם שב״חים ישנים במחסן של אדם. מה עושים עם בעל המחסן?",["מעכבים אותו לתחנה יחד עם השב״חים, ולכל אחד דו״ח עיכוב נפרד","רושמים את פרטיו ומשחררים","מעכבים רק את השב״חים","נותנים לו קנס במקום"],0,"בדו״ח הפעולה מתארים את מקום הלינה: כמה מיטות, מצעים, תרשים. ומזמינים חוקר מז״פ לצלם."],
+["ברכב נמצאו תושבי שטחים בלי היתר. מה עושים עם הרכב?",["תמיד מחרימים אותו","משאירים אותו בלי טיפול","נותנים למחזיק הרכב איסור שימוש, אלא אם ראש משרד החקירות החליט לתפוס אותו","מעבירים אותו לצה״ל"],2,"את הנהג מעכבים לתחנה יחד עם הנוסעים."],
+["יש חשד ששב״חים מסתתרים במבנה. מה הדין לגבי כניסה?",["מותר להיכנס בכל עת סבירה ולחפש. לבית מגורים נכנסים רק עם צו","אסור בלי צו, בכל מקרה","מותר להיכנס גם לבית מגורים בלי צו","מותר רק בלילה"],0,"ואסור להפעיל מתנדבי נוער בפעילות שב״ח."],
+["מהם שני התפקידים של המשטרה לפי חוק האלכוהול?",["רק לשפוך אלכוהול","להשמיד משקה בשטח, ולאכוף נגד עסקים שמוכרים בשעות האסורות או לקטינים","לאשר רישיונות לפאבים","לבדוק נהגים שיכורים בלבד"],1,"עסק שמוכר אלכוהול חייב שלט: שעות האיסור, ואיסור מכירה לקטין ולשיכור."],
+["מהו ״משקה משכר״ לפי חוק האלכוהול?",["רק יין, בירה ומשקאות חריפים","משקה עם מעל 5% אלכוהול","כל משקה עם מעל 2% אלכוהול, או משקה שלפי ריחו או הכלי שלו אפשר להניח שהוא משכר","משקה שנמכר בעסק בלבד"],2,"״כלי קיבול סגור״ = כלי שלא נפתח מאז שיוצר."],
+["מי נחשב ״אחראי על קטין״ לפי חוק האלכוהול?",["הורה, הורה חורג, אפוטרופוס, או מי שהקטין בהשגחתו לפי דין או בהסכמת הוריו","כל בגיר שיושב עם הקטין","חבר בגיר מעל גיל 21","כל חייל במדים"],0,"חבר בגיר — <b>לא</b> אחראי."],
+["איזו מהבאות <b>אינה</b> הנחת יסוד מול שותים?",["הם בעלי שיקול דעת לקוי","הם עלולים לתקוף את השוטרים","בקבוק זכוכית יכול לשמש כלי תקיפה","שותים תמיד משתפים פעולה עם המשטרה"],3,"הם גם עלולים לנסות למנוע את השמדת האלכוהול."],
+["בשעה 10:00 שלושה בגירים שותים בירה בגן ציבורי ומתנהגים יפה. יש סמכות להשמיד את האלכוהול?",["כן, כי שותים במקום ציבורי","כן, כי יש פחיות פתוחות","לא. אין חשש להפרת הסדר, והשעה לא בין 21:00 ל־06:00","לא, כי אסור לגעת באלכוהול של בגירים"],2,"לבגיר צריך: שותה · במקום ציבורי · <b>חשש להפרת סדר</b>. אם היו צועקים ומטרידים נשים, הייתה סמכות."],
+["בשעה 22:00 שלושה בגירים שותים בירה בגן ציבורי ומתנהגים יפה. יש סמכות?",["כן. כלי פתוח במקום ציבורי בין 21:00 ל־06:00 יוצר חזקה של חשש להפרת סדר","לא, כי הם מתנהגים יפה","לא, כי הם בגירים","רק אם הם שיכורים"],0,"החזקה נופלת רק אם השוטר השתכנע שאין חשש."],
+["בשעה 02:00 כמה בגירים חוגגים יום הולדת עם אלכוהול בחוף ים מבודד. מה נכון?",["אין סמכות, כי זה חוף","יש סמכות, כי השעה יוצרת חזקה. אבל מותר לשוטר להפעיל שיקול דעת ולא לשפוך, אם אין חשש ממשי","חובה לשפוך תמיד","רק אם יש קטינים"],1,"הם במקום מרוחק, ומההתנהגות לא עולה חשש."],
+["בשעה 10:00 שלושה קטינים שותים בירה בגן, מתנהגים יפה. איתם חייל בן 19. יש סמכות?",["לא, כי יש איתם בגיר","לא, כי השעה 10:00","כן. קטינים שותים, במקום ציבורי, בלי אחראי. חבר בגיר אינו אחראי על קטין","כן, אבל רק כלפי החייל"],2,"אצל קטין לא צריך חשש להפרת סדר ולא משנה השעה. מה שקובע: האם יש איתו <b>אחראי</b> שמסכים."],
+["בשעה 14:00 אב ובנו הקטין שותים וודקה בגן. הקטין נראה שיכור, אבל שניהם מתנהגים יפה. האב הציג תעודת זהות. יש סמכות?",["כן, כי הקטין נראה שיכור","כן, אבל רק את המשקה של הקטין","כן, כי וודקה היא משקה חריף","לא. הקטין עם האחראי עליו ובהסכמתו, ואין חשש להפרת הסדר"],3,"יש אחראי, ואין חשש להפרת סדר."],
+["בשעה 22:00 לכל אחד משלושה בגירים יש פחית בירה פתוחה, ולידם בקבוק יין סגור. מה מותר להשמיד?",["רק את הפחיות הפתוחות","כלום, כי יש בקבוק סגור","רק את בקבוק היין","את הכול, כולל הבקבוק הסגור"],3,"כלי פתוח אחד מראה שהם מתכוונים לשתות, ולכן מותר לשפוך גם את הסגורים."],
+["קטין יושב בגן ציבורי עם שקית, ובה שני בקבוקי בירה סגורים. יש סמכות?",["לא, כי הבקבוקים סגורים","לא, כי הוא לא שותה עכשיו","כן, אם יש יסוד סביר שהוא מתכוון לשתות. מותר לשאול אותו","כן, תמיד, בלי לשאול"],2,"שאר התנאים מתקיימים: מקום ציבורי, ואין אחראי במקום."],
+["שוטר ומתנדב בסיור, 21:30. אדם עם בירה פתוחה שורק לנערות בגן. מי שופך את האלכוהול?",["המתנדב, כי הוא בנוכחות שוטר","השוטר שופך, והמתנדב מאבטח אותו","שניהם יחד","אף אחד, כי אין סמכות"],1,"<b>למתנדב אין סמכות לתפוס או להשמיד אלכוהול, גם בנוכחות שוטר.</b>"],
+["שני מתנדבי אבטחה, בלי שוטר, רואים שני שתויים עם בירות פתוחות, ואחד מהם מכה אדם. מה עושים?",["מטפלים בתקיפה ומזמינים שוטר. סמכות להשמיד את האלכוהול אין להם","שופכים את האלכוהול מיד, כי כל התנאים מתקיימים","לא מתערבים, כי הם מתנדבי אבטחה","שופכים רק אם השתויים מסכימים"],0,"הסמכות להשמיד נתונה <b>לשוטרים בלבד</b>. את התקיפה הם כן צריכים לטפל."],
+["מהן שעות האיסור על מכירת אלכוהול בחנויות?",["21:00–06:00","23:00–06:00","00:00–08:00","אין איסור"],1,"21:00–06:00 היא שעת ה<b>חזקה</b> לגבי כלי פתוח במקום ציבורי. אל תתבלבל."],
+["מה העונש לבעל עסק שמכר אלכוהול לקטין?",["קנס בלבד","שלוש שנות מאסר","שישה חודשי מאסר, אלא אם הוכיח שהקטין הציג לו תעודה","סגירת העסק בלבד"],2,"כשיש חשד שהקונה קטין, המוכר צריך לבקש תעודת זהות."],
+["באירוע של שותים במקום ציבורי, איך עומדים השוטרים?",["צמוד לחשודים, כדי לשלוט בהם","10 מטרים, אחד מאחורי השני","מטר אחד, כתף אל כתף","2–3 מטרים מהחשודים, בזווית של 90 מעלות לפחות"],3,"אחד מטפל, אחד מאבטח עם פלפל מוכן. מי שמסרב להניח או לשפוך <b>מכשיל שוטר</b>."],
+["אירוע אלכוהול יזום, בלי אירוע מוקד. צריך לכתוב דו״ח פעולה?",["לא. מתעדים ברישום תוצאת המשימה","כן, תמיד","רק אם נעצר מישהו","רק אם המשקה נשפך"],0,"בסיום מדווחים למשל״ט ולראש המשמרת."],
+["מהי ״התנהגות מבצעית״?",["כללי הלבוש של השוטר בלבד","מה שהשוטר עושה כדי לשמור על עצמו, תוך כדי שהוא עושה את התפקיד הכי טוב שאפשר","נוהל השימוש בנשק","הדרך לכתוב דו״ח פעולה"],1,"ארבעה מרכיבים: הופעה, שפת גוף, מוכנות מבצעית, מוכנות מנטלית."],
+["איזה מסר שפת הגוף של השוטר <b>לא</b> אמורה להעביר?",["סמכות והרתעה","נחישות","ממלכתיות ושירות","קרבה אישית, כמו של חבר"],3,"שפת גוף של זלזול (ידיים בכיסים, נשענים) מזמינה תקיפה."],
+["מה כוללת ״מוכנות מבצעית״?",["בדיקת הציוד לפני המשמרת: פנס, נעליים, טייזר, נשק, תקינות הניידת","שינה טובה בלילה","הכרת השכנים באזור","קריאת עיתון לפני המשמרת"],0,"כך יודעים גם מה אפשר ומה אי אפשר לעשות באירוע."],
+["מה נכון לגבי הנחת יד על הנשק כשמרגישים איום?",["זה נחשב שימוש בנשק ודורש דיווח","אסור לעשות זאת מול אזרחים","זה לא נחשב שימוש בנשק, וזה מקצר את זמן התגובה","מותר רק באישור מפקד"],2,"אותו דבר לגבי פלפל או טייזר."],
+["מהן שלוש התגובות של יצור חי מול סכנה?",["להילחם, לברוח, לקפוא","לדווח, לחכות, לפעול","לצעוק, לברוח, להתחבא","לתקוף, להתגונן, להיכנע"],0,"התגובה יכולה להשתנות במהלך האירוע."],
+["מהו טווח הביטחון מחשוד בזמן בדיקה?",["50–80 סנטימטר","3–4 מטרים","1.20–2.00 מטר","5 מטרים"],2,"יחד איתו: קשר עין רציף וזווית גישה נכונה."],
+["בבדיקת חשוד בזוג, איזה צד פונה אל הנבדק?",["הצד בלי האקדח. ואת התעודה מחזיקים ביד החלשה","הצד שבו האקדח, כדי להרתיע","אין לזה חשיבות","הצד של היד החזקה"],0,"כך היד החזקה נשארת פנויה לפלפל, טייזר או נשק."],
+["איך מתחלקים התפקידים בבדיקת חשוד בזוג?",["שניהם בודקים, כדי לסיים מהר","מי שקרוב יותר בודק","המתנדב תמיד בודק","אחד בודק ואחד מאבטח, במשולש פתוח מול הנבדק. החלוקה נקבעת לפני המשמרת"],3,"לא מעמידים אדם או חפץ בין הבודק למאבטח."],
+["אתה בוגר שלב א׳. מתי מותר לך לבדוק חשוד?",["תמיד, גם לבד","רק יחד עם שוטר — אחד בודק ואחד מאבטח","רק ביום","אף פעם"],1,"בדיקת חשודים בלי שוטר — רק לבוגרי שלב ב׳."],
+["שוטר לבד מול שני חשודים או יותר. מה עושים?",["בודקים את שניהם יחד כדי לחסוך זמן","משחררים, כי אסור לבדוק לבד","כובלים את כולם מיד","מקפיאים מצב, מבקשים סיוע, ומרחיקים את החשודים זה מזה"],3,"כך שלא יוכלו לגעת או לסמן אחד לשני."],
+["בדיקת מסוף העלתה שהחשוד מבוקש. מה עושים?",["עוצרים אותו מיד, לבד","אומרים לו שהוא מבוקש ומחכים","מדווחים למוקד ומבקשים תגבור, לא מעוררים את חשדו, ועוצרים יחד עם שוטר נוסף","משחררים ומדווחים אחר כך"],2,"לא מסגירים לחשוד שגילינו."],
+["מה עושים לפני בדיקת חשוד, ובסופה?",["מדווחים למוקדן לפני הבדיקה, ובסוף מדווחים על ״תום בדיקה״","מדווחים רק אם נמצא משהו","לא מדווחים, כדי לא להעמיס על הקשר","מדווחים רק בסוף המשמרת"],0,"מוקדן שלא שמע ״תום בדיקה״ מתקשר. אין תשובה — שולח ניידת מיד."],
+["מה עושה לחצן המצוקה במכשיר הקשר?",["מאפשר לשדר לבד בתדר כ־10 שניות, והמוקדן מאתר את המיקום","מנתק את הקשר","מתקשר ל־100","מפעיל צופר"],0,"לוחצים רק בחירום."],
+["באיזה מצב <b>אין</b> בסיס לחיפוש על הגוף?",["על אדם שנעצר","כשיש יסוד להניח שהוא נושא סם","כשנכנסים למקום מאובטח","על אדם שמסרב לענות על שאלות, בלי שום חשד"],3,"עוד מצב שמותר: אגב חיפוש במקום, כשיש יסוד להניח שאחד הנוכחים מחזיק את מה שמחפשים."],
+["לפני חיפוש על הגוף ליד קיר, מה עושים?",["מכניסים יד לכיסים שלו כדי לבדוק","כובלים אותו תמיד","שואלים אם יש עליו משהו שלא אמור להיות, ומבקשים שיוציא מהכיסים לאט","מבקשים שיוריד את החולצה"],2,"אסור להכניס ידיים לכיסי החשוד."],
+["חשוד מתנגד באמצע חיפוש ליד קיר. מה עושים?",["מורידים אותו לקרקע בלחץ על החלק האחורי של הברך","מרפים ומחכים שיירגע","ממשיכים לחפש כאילו לא קרה כלום","יורים באוויר"],0,"בגלל הלחץ על הברך הוא יתקשה לקום."],
+["באמצע חיפוש צריך פלפל או טייזר. מה עושה המחפש?",["מפעיל בעצמו את הפלפל","צועק ״הפעל!״ וזז אחורה, והמאבטח מפעיל מיד","ממשיך לחפש ומחזיק את החשוד חזק","מבקש אישור בקשר"],1,"המאבטח עומד בטווח שמתאים לפלפל או לטייזר."],
+["מצאת אקדח על חשוד בזמן חיפוש. מה עושים?",["מכניסים אותו לחגורה ומביאים לתחנה","זורקים אותו הצידה","לא נוגעים לפני התייעצות עם חבלן","נותנים אותו למתנדב שישמור"],2,"אם החבלן הורה לאסוף — פורקים בבטיחות, ומפרידים בין הנשק לתחמושת."],
+["בהובלת עצור ברגל, איפה השוטר?",["לפני העצור, כדי להוביל את הדרך","במרחק 2 מטרים ממנו","מאחוריו או בצדו, עם יד מונחת עליו","אין כלל"],2,"מרגע המעצר אתה מחליט איפה הוא עומד ויושב."],
+["חשוד אלים נעצר. איך כובלים אותו?",["ידיים מלפנים","כובלים רק את הרגליים","לא כובלים אלים, כדי לא להרגיז","ידיים מאחורי הגב, ומחפשים עליו מיד"],3,"ועצור עובר לאדם אחר רק בחתימה."],
+["עצור בניידת בלי תא עצורים. איפה יושב השוטר שמלווה אותו?",["ליד הנהג","מאחור, מאחורי הנהג","מאחור, מאחורי מושב הנוסע","השוטר לא יושב ליד העצור"],1,"כדי להגן על הנהג, שעסוק בנהיגה. נועלים ״נעילת ילדים״."],
+["בבדיקת רכב חשוד, מאיזה צד עדיף לגשת?",["מימין, מצד הנוסע, כדי להתרחק מהרכבים שחולפים בכביש","מצד הנהג, כדי לראות אותו","מלפני הרכב","אין לזה חשיבות"],0,"והניידת לא משמשת מגן."],
+["איזו פעולה <b>אסורה</b> בבדיקת רכב חשוד?",["לעמוד מחוץ לנתיב, עם סימני זיהוי","להעמיד את הניידת מאחורי רכב החשודים","להכניס את הראש לתוך הרכב כדי לדבר עם הנהג","להורות לנהג לצאת מהרכב"],2,"וגם: לא מחפשים בתא המטען כשהחשוד עומד לידך."],
+["כשרמת החשד מצדיקה, מה מורים לנהג החשוד?",["לצאת מהרכב ולגשת לשוטר","לדומם מנוע, להניח מפתחות על לוח השעונים או על הגג, ושתי ידיים על ההגה","להשאיר את המנוע פועל","לפתוח את תא המטען"],1,"החשוד לא תמיד מבין עברית. כדאי לנסות גם שפות אחרות."],
+["מתי מותר לעכב רכב לשם חיפוש?",["בכל פעם שהשוטר רוצה","כשיש חשד לעבירה בת מעצר (עוון או פשע), כדי למצוא חשוד, קורבן או ראיה","רק בעבירות תנועה","רק עם צו שופט"],1,""],
+["מה הסדר הנכון בחיפוש ברכב?",["מחפשים ברכב קודם, ואז על החשודים","נותנים לחשוד לחפש בעצמו, והשוטר מפקח","מחפשים כשהחשודים יושבים ברכב","קודם חיפוש על החשודים, מרכזים אותם במקום בטוח, ואז חיפוש ברכב בנוכחות עד"],3,"הנהג רואה את החיפוש, כדי שלא יטען ששתלו ראיות. אבל הוא לא מחפש בעצמו — הוא יכול להחביא דברים או לשלוף נשק."],
+["בבדיקת אופנוע, מה עושים עם הקסדה?",["הרוכב נשאר איתה, לבטיחות","רק הנוסע מוריד קסדה","מורידים אותה ומניחים על המושב או על הקרקע, גם הרוכב וגם הנוסע","השוטר לוקח אותה לניידת"],2,"קסדה היא כלי תקיפה, ובלי קסדה רואים את פני החשוד."],
+["מהי כבילה נכונה באזיקי ידיים?",["פתחי המפתח פונים החוצה, כדי שיהיה קל לפתוח","פתחי המפתח פונים אל גוף העצור, והנצרות כלפי מעלה","האזיקים רפויים, כדי שלא יכאב","אין חשיבות לכיוון"],1,"כשפתחי המפתח פונים החוצה, העצור יכול להגיע אליהם."],
+["מה נכון לגבי אזיקי רגליים?",["פתחי המנעול למטה, והעצור עם הגב לקיר","פתחי המנעול למעלה, העצור עם הפנים לקיר. חשוד שמתפרע — כובלים כשהוא שוכב","כובלים רגליים רק בניידת","אין כללים מיוחדים"],1,"נזהרים מבעיטה לפנים."]
+],
+3:[
+["עד איזה גיל קטין <b>אינו</b> בר עונשין?",["עד גיל 12","עד גיל 14","עד גיל 16","עד גיל 18"],0,"מיום ההולדת ה־12 הוא בר עונשין, כלומר יכול להישפט. קטין = עד 18."],
+["שני מתנדבים, בלי שוטר, רואים נער בן 15 משחית ספסל. מה נכון?",["עוצרים אותו ומביאים לתחנה","מתעלמים, כי זה תפקיד של עובדי נוער","מפסיקים את העבירה, מדווחים לקצין המשמרת ומזעיקים שוטר","חוקרים אותו במקום"],2,"מתנדבים לא מטפלים בבני נוער בלי שוטר."],
+["ילד בן 11 גנב משחק מחנות. אתה עם שוטר. מה מותר לעשות?",["לעצור אותו ולהביא לתחנה","לברר פרטים, לבקש הנחיות מקצין הנוער, ואם מסרב לתת פרטים — לעכב לזיהוי בלבד","לכבול אותו עד שההורים מגיעים","לחקור אותו באזהרה"],1,"עיכוב כזה נעשה ברכב ״לבן״ (אזרחי). <b>אין לעצור קטין שאינו בר עונשין.</b>"],
+["אותו ילד בן 11 מסר את שמו, כתובתו ומספר הטלפון של אמו. מה עכשיו?",["מעכבים אותו לתחנה בכל זאת, כדי לחקור","מחכים איתו עד שאמו תגיע, ואז עוצרים","גובים ממנו עדות באזהרה","כבר אין סמכות עיכוב. רושמים פרטים בדו״ח פעולה ומעדכנים את קצין הנוער"],3,"העיכוב נועד רק לברר מי הוא. ברגע שהזהות ידועה, אין עילה לעכב."],
+["ילד בן 10 מעורב בגניבה, ונמצא עם אמו. מה עושים?",["עוצרים את שניהם","לא עוצרים. רושמים את הפרטים בדו״ח פעולה, ומשחררים אותו עם האם","מעכבים אותו לתחנה בלי האם","לוקחים ממנו טביעות אצבע"],1,""],
+["איך גובים עדות מילד מתחת לגיל 12 שחשוד בעבירה?",["עדות באזהרה, כמו כל חשוד","לא גובים ממנו כלום, אף פעם","רק ההורים מעידים","עדות פתוחה בלבד, בלי אזהרה, כי הוא לא יעמוד לדין"],3,""],
+["ילד בן 10 תוקף ילד אחר בפראות בגן. מותר להפעיל כוח כדי לעצור את התקיפה?",["לא. אסור לגעת בקטין שאינו בר עונשין","כן, וגם לעצור אותו","כן, כוח סביר, מכוח החובה למנוע עבירות","רק אם ההורים מסכימים"],2,"אין סמכות מעצר, אבל מותר להפסיק את התקיפה בכוח סביר."],
+["נער בן 17 תקף אדם בקרש בפאב ופצע אותו. מה סמכות העיכוב והמעצר כלפיו?",["זהה לזו של בגיר, כי הוא בר עונשין","אין סמכות, כי הוא קטין","רק עיכוב, אף פעם לא מעצר","רק עובד נוער יכול לעכב"],0,"ההבדלים הם בכללים הפנימיים: כבילה, הסעה, חיפוש, כליאה."],
+["איזה מהכללים למעצר קטין <b>אינו</b> נכון?",["מסיעים קטין עצור ברכב ״לבן״ עם לוחיות אזרחיות","נמנעים מלעצור קטין בבית ספר או במקום העבודה שלו","מותר להסיע קטין עצור עם עצור בגיר באותו רכב, אם יש מקום","מעצרים יזומים של קטינים מבצעים רק עובדי נוער"],2,"<b>אף פעם</b> לא באותו רכב עם עצור בגיר, ולא באותו תא."],
+["מתי מותר לכבול קטין?",["תמיד, כמו בגיר","ככלל לא. באישור קצין, ורק אם: עלול לברוח, אלים, עלול להשמיד ראיות, ברח בעבר, או ביצע פשע שסיכן חיים","אף פעם","רק מעל גיל 16"],1,"כבלי רגליים — לא מתחת לגיל 16."],
+["קטין בן 13 עצור. לכמה זמן אפשר לכלוא אותו?",["עד 6 שעות","עד 12 שעות","עד 24 שעות","עד 48 שעות"],1,"מגיל 14 — עד 24 שעות, כמו בגיר."],
+["מה עושים כשמעכבים קטין לתחנה?",["רק מודיעים להורים","מעבירים אותו לחוליית הנוער (ואם אין — לחוקר התורן), ומודיעים להורים","מכניסים אותו לתא עם העצורים","שולחים אותו הביתה לבד"],1,"דחיית ההודעה להורים — רק באישור קצין."],
+["יש ידיעה שקטין מחזיק סמים בבית. מה נדרש כדי לחפש שם?",["נוכחות הורה, התייעצות מראש עם קצין נוער, ולהימנע מחיפוש בלילה","אין תנאים מיוחדים, כמו אצל בגיר","מספיק אישור של שכן","רק בלילה, כדי לא לעורר תשומת לב"],0,"ההורים לא בבית? מנסים להשיג אותם. אין אישור — מחכים להם."],
+["צילום וטביעות אצבע של קטין עצור. מה הכלל?",["שניהם מגיל 12","טביעות אצבע מעל גיל 12, צילום רק מגיל 14","שניהם מגיל 16","אסור לצלם או להטביע קטין"],1,"הפנים של ילד מתחת לגיל 14 עוד משתנות."],
+["איזה מצב <b>אינו</b> מגדיר ״קטין נזקק״?",["לא נמצא אחראי עליו","נמצא משוטט או פושט יד","נולד עם תסמונת גמילה מסם","קיבל ציון נכשל בבית הספר"],3,"מעבירים ליחידת הנוער, והיא מערבת <b>פקיד סעד</b>."],
+["מתי שוטר נכנס לבית ספר בלי הסכמת המנהל?",["בכל ביקורת שגרתית","אף פעם, בלי יוצא מן הכלל","כשמתבצעת שם עבירה והוא בא להפסיק אותה, כשהוא רודף אחרי חשוד שנמלט פנימה, או כשהוא מפקד מש״ק או עובד נוער עם אישור קבוע","כשמתנדב מגיע להרצות"],2,"מתנדב שבא להרצות צריך אישור ממפקדיו וגם ממנהל בית הספר."],
+["מה ההבדל בין זירה סטטית לזירה דינמית?",["סטטית בתוך מבנה, דינמית בשטח פתוח","סטטית בלי נפגעים, דינמית עם נפגעים","סטטית יש בה חשוד, דינמית אין","סטטית מתחילה ונגמרת באותו מקום וכל הראיות שם. דינמית מתפרשת על כמה מקומות"],3,"למשל: פורץ שהחביא את השלל במקום אחר ונתפס במקום שלישי — שלוש זירות."],
+["מה הפעולה הראשונה בזירת עבירה?",["סימון הזירה בסרט","הצלת חיים ופינוי נפגעים","דיווח למוקד","איסוף ראיות"],1,"הסדר: הצלת חיים ← חשודים ← דיווח ← שמירה על הזירה ← התרשמות ← איסוף מידע."],
+["נגנב עדר מחווה. איך סוגרים את הזירה?",["בפתח הדיר, בדיוק במקום הגניבה","לא סוגרים זירה חקלאית","בהיקף הרחב: מאתרים את שביל הגישה וסוגרים ממנו והלאה","רק סביב העקבות שנראות"],2,"סוגרים בהיקף הרחב, לא צמוד למקום."],
+["אין לכם סרט סימון. במה מותר לגדר את הזירה?",["בחפצים מחוץ לזירה שאינם חלק ממנה: חביות, אבנים, עציצים","בכל חפץ, גם מתוך הזירה","בראיות עצמן, כי הן כבר במקום","אסור לגדר בלי סרט סימון"],0,"<b>אף פעם לא בראיות.</b>"],
+["את מי רושמים כשנכנסים לזירה?",["רק אזרחים, כי שוטרים לא מזהמים","אף אחד, כדי לא לעכב","רק מי שלא לובש מדים","כל מי שנכנס, כולל שוטרים, מתנדבים ומד״א, עם שעת כניסה ויציאה"],3,""],
+["איזו פעולה <b>לא</b> מקלקלת זירה?",["הוספת עקבות חדשות","ערבוב בין ראיות","אי סימון מיידי של הראיות","צילום הממצאים עם סרגל"],3,"צילום עם סרגל הוא הדרך הנכונה: הוא נותן קנה מידה."],
+["תפסתם חשוד בזירה. מה הטעות הנפוצה?",["לדווח למוקד","לשכוח לחפש את הראיות שבזירה","להפריד בין החשודים","לרשום את הנוכחים"],1,"בלי ראיות אין כתב אישום. ומצאת ראיה? ממשיכים לחפש, כנראה יש עוד."],
+["מה עושים עם עקבות צמיגים בזירה?",["דורכים עליהם כדי לבדוק","מצלמים ומודדים את המרחק בין הצמיגים","מוחקים אותם","לא מתייחסים, זה לא ראיה"],1,"ככל שמתעדים יותר עקבות, קל יותר לקשור את הרכב לזירה."],
+["נגעת בטעות בחפץ בזירה. מה עושים?",["לא אומרים כלום","מנגבים את החפץ","זורקים אותו","כותבים על כך מזכר, ומוסרים לטכנאי את שמך"],3,"אחרת יחפשו את טביעת האצבע שלך בין החשודים."],
+["מצאתם אקדח בזירה, ואין חשש שמישהו ייקח אותו. מה עושים?",["פורקים אותו מיד","לא נוגעים בו, גם אם יש חשש לכדור בקנה","מכניסים אותו לניידת","מצלמים ולוקחים לתחנה"],1,"רק אם יש חשש שמישהו ייקח אותו — תופסים בזהירות ומעבירים מהר לשוטר."],
+["זירה בשטח פתוח, וצריך להזיז אבן. איך?",["ביד, מהר","בעזרת מוט, בגלל סכנה של נחשים ועקרבים","בבעיטה","לא מזיזים אף פעם"],1,""],
+["רכב לא מוכר נוסע בלילה בדרך חקלאית, אחרי דיווח על גניבה. מה עושים?",["עוצרים אותו מיד ובודקים","מתעלמים","קוראים לתגבורת ובודקים את מספר הרישוי במסוף לפני שעוצרים אותו","יורים בצמיגים"],2,"אם יש בו עבריין, סביר שיברח. לכן קודם גיבוי."],
+["מתנדב תפס חשוד בזירה. מה מותר לשאול אותו?",["כל שאלה על העבירה","אסור לדבר איתו בכלל","רק על מעשיו במקום, ולא על העבירה עצמה","מותר לחקור באזהרה אם יש שוטר בקשר"],2,"שאלות על העבירה מחייבות אזהרה, ולמתנדב אסור לחקור באזהרה."],
+["נתפס טלפון נייד על חשוד. מה עושים?",["בודקים את ההודעות כדי למצוא שותפים","מחזירים לו אותו","בודקים רק את התמונות","רושמים תיאור מפורט ולא נכנסים לתוכן"],3,"בדיקת התוכן היא חדירה לפרטיות, ודורשת אישור בית משפט."],
+["עוצרים כמה חשודים בזירה. מה <b>לא</b> נכון לעשות?",["מפרידים ביניהם כדי שלא יתאמו גרסאות","מושיבים אותם יחד כדי שיהיה קל להשגיח","לוקחים מהם טלפונים ותעודות זהות","סורקים שוב את השטח עם פנסים"],1,""],
+["קריאה לאירוע בזירה כפרית. איך מגיעים?",["קודם אל המודיע, שיוביל לזירה. אם יש אספלט — הולכים עליו","ישר לזירה עצמה, הכי מהר","ברכב עד נקודת הגניבה","מחכים לבוקר"],0,"הולכים על אספלט כדי לא לטשטש עקבות."],
+["איזה מאלה <b>אינו</b> ״חפץ״ שאפשר לתפוס?",["בעל חיים","חומר מחשב","תעודה או מסמך","גופת אדם"],3,""],
+["מתי מותר לתפוס חפץ?",["כשיש יסוד סביר שנעברה בו עבירה, שהוא עשוי לשמש ראיה, או שניתן כשכר על עבירה","כל חפץ שנמצא אצל חשוד","רק עם צו","רק חפצים יקרי ערך"],0,""],
+["תפסתם אלכוהול שמותר להשמיד מיד. מה עושים?",["זורקים בלי לרשום","משמידים, ורושמים דו״ח על התפיסה ועל ההשמדה","מביאים לתחנה בכל מקרה","נותנים לבעלים"],1,"מוצג אחר — השמדה רק באישור קצין אח״מ מרחבי או צו בית משפט."],
+["מה עושים מיד אחרי שתופסים חפץ?",["מכניסים לכיס ומביאים לתחנה","משאירים בניידת עד סוף המשמרת","סימון, תיעוד בדו״ח, צילום או תרשים, ספירה או שקילה, והובלה לתחנה","מחזירים לבעלים אחרי צילום"],2,"מצלמים <b>לפני</b> שנוגעים."],
+["באילו דרכים מתעדים חפץ לפני שתופסים אותו?",["רק בזיכרון","צילום, תרשים, או דו״ח זיכרון דברים","רק בציור ביד","שואלים את החשוד מה זה"],1,""],
+["אדם מתלונן שהכו אותו בפנים, ויש לו סימן. מה עושים?",["כותבים ״הוכה קשות״","לא עושים כלום, זה תפקיד הרופא","שולחים אותו הביתה","מצלמים את החבלה ומתארים אותה: צבע וגודל, למשל ״סימן סגול בקוטר 2 ס״מ״"],3,""],
+["חשוד מנסה לבלוע סם. מה קודם?",["מצלמים קודם, כמו בכל מוצג","מחכים לחוקר מז״פ","מבקשים מהחשוד שימסור","תופסים מהר את הסם, ורק אחר כך מתעדים"],3,"זה החריג לכלל ״קודם מתעדים, אחר כך תופסים״."],
+["למה מחליפים לכפפות חדשות בכל זירה?",["כי זה יפה","כדי לא להעביר דנ״א מזירה לזירה","כדי לא להתלכלך","זה לא חשוב"],1,""],
+["מי מחליט על השמדה של מוצג?",["קצין אח״מ מרחבי, או צו של בית משפט","השוטר שתפס, אם המוצג חסר ערך","המתנדב, אחרי שצילם","ראש המשמרת"],0,"בקבוק אלכוהול שנמכר לקטין צולם והושמד בלי אישור — וחסרה ראיה בתיק. צילום לבד לא מספיק."],
+["איך אורזים סכין שנתפסה?",["בשקית ניילון רגילה","בקלמר קשיח, בלי ללחוץ משני הצדדים, ועוטפים בשקית כחולה","עטופה בעיתון","בכיס של המתנדב"],1,"כל חפץ נארז בנפרד."],
+["המתנדב אריק שלמה תפס שלושה חפצים. איך מסמנים אותם?",["1, 2, 3","אריק־1, אריק־2, אריק־3","א.ש 1, א.ש 2, א.ש 3","במספר האירוע בלבד"],2,"ראשי תיבות של התופס, ומספר לפי הסדר."],
+["איזה פרט <b>אינו</b> חלק מדו״ח תפיסה וסימון?",["תיאור מפורט של החפץ","מקום התפיסה המדויק","למי הועבר החפץ","הדעה האישית של התופס על אשמת החשוד"],3,"בדו״ח: מה החפץ, איפה ואיך נתפס, פרטי האירוע, ופרטי החשוד."],
+["מה זו ״שרשרת סם״?",["רשימת הסמים האסורים בחוק","שקית מיוחדת לאריזת סמים","מספר התיק במעבדה","הדו״חות שמתעדים את מעבר החומר מרגע התפיסה ועד בית המשפט"],3,"חוליה חסרה = זיכוי. כך זוכה נאשם כשהעברת הסם מהמתנדבים לחוקר לא תועדה."],
+["איזו סמכות <b>אין</b> לבית המשפט בנושא עדות?",["לזמן כל אדם להעיד","לצוות על אדם שנמצא באולם להעיד","לקנוס או לאסור מי שלא התייצב","לחייב את העד לתת את דעתו האישית על אשמת הנאשם"],3,"עד מעיד על <b>עובדות</b> בלבד."],
+["למה חשוב שדו״ח הפעולה יהיה מדויק ואמיתי?",["לפיו תעיד גם אחרי זמן רב, וכתיבת שקר היא עבירה פלילית","כי המפקד קורא אותו","כי ככה מקבלים תשלום","זה לא חשוב"],0,""],
+["קיבלת הזמנה להעיד ואתה חולה. מה עושים?",["לא מגיעים, ומביאים אישור מחלה לדיון הבא","מתקשרים לסנגור ומבקשים לדחות","מודיעים לתובע ומגישים בקשה לבית המשפט. פטור רק אם השופט אישר בכתב","שולחים מתנדב אחר במקומך"],2,"שתי הזמנות לאותו מועד: מודיעים לשני בתי המשפט, והם יקבעו."],
+["מה מותר לעשות לפני העדות?",["לרענן זיכרון מהמסמכים שכתבת ולהתכונן עם התובע","לדבר עם הסנגור, כדי לדעת מה ישאל","לשבת באולם ולשמוע את העדים שלפניך","לתאם פרטים עם עד אחר בתיק"],0,"אסור לדבר עם הסנגור או עם עדים אחרים על העדות."],
+["באיזו חקירה מותר לשאול את העד שאלות מדריכות?",["בחקירה הראשית","בחקירה הנגדית","בחקירה החוזרת","בכל אחת מהן"],1,"ראשית — מי שהזמין את העד. נגדית — הצד שכנגד, בדרך כלל הסנגור. חוזרת — רק על מה שעלה בנגדית."],
+["באמצע העדות שואלים אותך משהו שאתה לא זוכר. מה עושים?",["עונים את מה שנראה הכי הגיוני","מנחשים, כי שתיקה תיראה רע","מתייעצים בשקט עם התובע","אומרים שאינך זוכר, ואפשר לבקש לרענן זיכרון מהדו״ח"],3,"תשובה לא בטוחה עלולה ליצור סתירה בין עדי התביעה."],
+["באיזה לבוש מגיע לעדות מתנדב שעובד במדים?",["במדים","בחליפה","בלבוש חופשי","במדים רק אם השופט ביקש"],0,"בלי מדים — לבוש אזרחי צנוע."],
+["מתנדב העיד באותו יום בשלושה תיקים. על כמה הופעות יקבל תשלום?",["שלוש","אחת","שתיים","אף אחת, זו התנדבות"],1,""],
+["בוגר שלב א׳ — מותר לו לכוון תנועה?",["כן, בכל צומת","רק בצומת בלי רמזור","כן, אם הוא לובש אפודה זוהרת","לא. רק שוטר, או מתנדב תנועה שלב ב׳ שאושר בכתב"],3,"רק כשחייבים להסדיר תנועה כדי להציל אדם."],
+["מה ההבדל בין ״אותות״ ל״הוראות״?",["אין הבדל","אותות = סימן. הוראות = פקודה","אותות רק בלילה, הוראות רק ביום","אותות נותן רק פקח"],1,""],
+["מהו סדר העדיפויות כשצריך להתערב בפעולת רמזור?",["הבהוב צהוב ← הפעלה ידנית ← פנייה למרכז הבקרה","פנייה למרכז הבקרה ← הפעלה ידנית מארון הרמזור ← הבהוב צהוב וכניסה לצומת","כניסה לצומת ← הבהוב צהוב ← דיווח","הפעלה ידנית ← פנייה למרכז הבקרה ← כיבוי הרמזור"],1,"אף פעם לא מכוונים תנועה נגד רמזור שפועל."],
+["בהזרמת תנועה, איזה רכב עדיף <b>לא</b> לעצור ראשון?",["רכב כבד או איטי","רכב פרטי","אופנוע","מונית"],0,"כדי שהתנועה תזרום."],
+["שוטר שמכוון תנועה מסמן לך לעבור באור אדום. מה הדין?",["חובה לציית, גם כשההוראה סותרת רמזור או תמרור","אסור, הרמזור קובע תמיד","רק אם השוטר הזדהה בתעודה","רק בשעות הלילה"],0,"סדר הציות: שוטר ← רמזור ← תמרור."],
+["מי מהבאים <b>אינו</b> מוסמך לתת אותות תנועה?",["שוטר במדים","שוטר צבאי במדים","עובד נתיבי איילון במדים","מאבטח של קניון"],3,"מוסמך גם פקח עירוני במדים."],
+["נהג מגיע מכיוון הגב של שוטר שמכוון תנועה. מה עליו לעשות?",["להמשיך בזהירות","לצפור לשוטר","לעצור","לעקוף מימין"],2,""],
+["מה פריטי החובה בהכוונת תנועה?",["כפפות, משרוקית, קסדה ואפודה","כובע שוטר, מדים, אפודה זוהרת תקינה, ופנס בחושך","מדים, מכשיר קשר, נשק ופנס","אפודה, קונוסים, משרוקית וטלפון"],1,"ולא אוכלים, לא מעשנים ולא מדברים בטלפון."],
+["מה תפקיד מי שנשלח לתאונת דרכים, מבחינת התנועה?",["לחלק דוחות לנהגים","לאפשר לתנועה לזרום בבטחה ולסמן את מקום התאונה","לסגור את הכביש לכל היום","לצלם לתקשורת"],1,""]
+]
+};
+
+(function(){
+  var KEY='sior-a-quiz-v3', L=['א','ב','ג','ד'];
+  var state={};
+  try{state=JSON.parse(localStorage.getItem(KEY)||'{}')||{};}catch(e){state={};}
+  function save(){try{localStorage.setItem(KEY,JSON.stringify(state));}catch(e){}}
+  var answerOf={}, partOf={}, total=0, ids={1:[],2:[],3:[],4:[]};
+  [1,2,3].forEach(function(p){
+    var list=document.querySelector('.qlist[data-q="'+p+'"]');
+    DATA[p].forEach(function(it,j){
+      total++;
+      var id='p'+p+'-'+j, q=it[0], o=it[1], a=it[2], w=it[3], added=it[4]===1;
+      answerOf[id]=a; partOf[id]=p; ids[p].push(id);
+      var el=document.createElement('div');
+      el.className='qi'+(added?' add':''); el.setAttribute('data-id',id);
+      var opts=o.map(function(t,k){
+        return '<button type="button" class="opt" id="'+id+'-o'+k+'" data-k="'+k+'"><span class="l">'+L[k]+'.</span><span class="t">'+t+'</span></button>';
+      }).join('');
+      el.innerHTML='<div class="qh"><span class="qn">'+(j+1)+'</span><p class="qt">'+q+(added?'<span class="chip-add">נוסף לאחר ההערה</span>':'')+'</p></div>'+
+        '<div class="opts" role="group" aria-label="תשובות לשאלה '+(j+1)+'">'+opts+'</div>'+
+        '<details><summary>תשובה והסבר</summary><div class="ans"><p><span class="c">'+L[a]+'. '+o[a]+'</span><span class="why">'+w+'</span></p></div></details>';
+      list.appendChild(el);
+    });
+  });
+  document.getElementById('qtotal').textContent=total;
+
+  var current=1;
+  var tabs=[].slice.call(document.querySelectorAll('.tab'));
+  var parts=[].slice.call(document.querySelectorAll('section.part'));
+  function show(p,scroll){
+    current=p;
+    parts.forEach(function(s){s.hidden=(+s.getAttribute('data-part')!==p);});
+    tabs.forEach(function(t){var on=+t.getAttribute('data-part')===p;t.setAttribute('aria-selected',on?'true':'false');t.tabIndex=on?0:-1;});
+    try{localStorage.setItem(KEY+'-part',String(p));}catch(e){}
+    if(scroll){document.getElementById('p'+p).scrollIntoView();}
+    update();
+  }
+  tabs.forEach(function(t){t.addEventListener('click',function(){show(+t.getAttribute('data-part'),true);});});
+
+  function mark(el,picked){
+    var id=el.getAttribute('data-id'), a=answerOf[id];
+    el.classList.add('done');
+    el.classList.toggle('right',picked===a);
+    el.classList.toggle('wrong',picked!==a);
+    el.querySelectorAll('.opt').forEach(function(b){
+      var k=+b.getAttribute('data-k');
+      b.classList.toggle('is-right',k===a);
+      b.classList.toggle('picked-wrong',k===picked&&k!==a);
+      b.setAttribute('aria-pressed',k===picked?'true':'false');
+    });
+    el.querySelector('details').open=true;
+  }
+  function unmark(el){
+    el.classList.remove('done','right','wrong');
+    el.querySelectorAll('.opt').forEach(function(b){b.classList.remove('is-right','picked-wrong');b.removeAttribute('aria-pressed');});
+    el.querySelector('details').open=false;
+  }
+  function tally(list){
+    var an=0,co=0;
+    list.forEach(function(id){if(state[id]!==undefined){an++; if(state[id]===answerOf[id]) co++;}});
+    return {an:an,co:co};
+  }
+  function update(){
+    var all=[];[1,2,3].forEach(function(p){all=all.concat(ids[p]);});
+    var T=tally(all), P=tally(ids[current]);
+    var pct=document.getElementById('pct'), st=document.getElementById('st');
+    var tail='<small>בכל הדף: ענית '+T.an+' מתוך '+total+(T.an?' · נכון '+T.co+' ('+Math.round(T.co*100/T.an)+')':'')+'</small>';
+    if(!P.an){pct.textContent='—';pct.className='pct';st.innerHTML='יום '+current+': עוד לא ענית · <b>'+ids[current].length+'</b> שאלות'+tail;}
+    else{
+      var p=Math.round(P.co*100/P.an);
+      pct.textContent=p; pct.className='pct '+(p>=70?'pass':'fail');
+      st.innerHTML='יום '+current+': ענית <b>'+P.an+'</b> מתוך '+ids[current].length+' · נכון <b>'+P.co+'</b>'+(p>=70?' · עובר':' · מתחת ל־70')+tail;
+    }
+    [1,2,3].forEach(function(p){
+      var R=tally(ids[p]), c=document.querySelector('[data-cnt="'+p+'"]');
+      var nAdd=DATA[p].filter(function(x){return x[4]===1;}).length;
+      c.textContent=(R.an?(R.co+' נכון מתוך '+R.an+' · '):'')+ids[p].length+' שאלות';
+    });
+  }
+  document.addEventListener('click',function(ev){
+    var b=ev.target.closest('.opt'); if(!b) return;
+    var el=b.closest('.qi'); if(!el||el.classList.contains('done')) return;
+    var k=+b.getAttribute('data-k');
+    state[el.getAttribute('data-id')]=k; save(); mark(el,k); update();
+  });
+  Object.keys(state).forEach(function(id){
+    var el=document.querySelector('.qi[data-id="'+id+'"]');
+    if(el&&answerOf[id]!==undefined) mark(el,state[id]); else delete state[id];
+  });
+
+  var ow=document.getElementById('onlyWrong'), oa=document.getElementById('onlyAdd');
+  ow.addEventListener('click',function(){
+    var on=document.body.classList.toggle('only-wrong');
+    ow.setAttribute('aria-pressed',on?'true':'false');
+    if(on) document.getElementById('p'+current+'-q').scrollIntoView();
+  });
+  oa&&oa.addEventListener('click',function(){
+    var on=document.body.classList.toggle('only-add');
+    oa.setAttribute('aria-pressed',on?'true':'false');
+    document.getElementById('p'+current).scrollIntoView();
+  });
+  var rs=document.getElementById('reset'), armed=false, t=null;
+  rs.addEventListener('click',function(){
+    if(!armed){armed=true; rs.textContent='בטוח? לחץ שוב'; rs.classList.add('warn'); t=setTimeout(function(){armed=false;rs.textContent='התחל מחדש';rs.classList.remove('warn');},4000); return;}
+    clearTimeout(t); armed=false; rs.textContent='התחל מחדש'; rs.classList.remove('warn');
+    state={}; save();
+    document.querySelectorAll('.qi').forEach(unmark);
+    document.body.classList.remove('only-wrong'); ow.setAttribute('aria-pressed','false');
+    update();
+  });
+
+  function openAll(){document.querySelectorAll('details').forEach(function(d){d.open=true;});}
+  var start=1, h=location.hash.replace('#','');
+  var m=/^p([1-3])/.exec(h);
+  if(m){start=+m[1];}
+  else{try{var s=+localStorage.getItem(KEY+'-part'); if(s>=1&&s<=3) start=s;}catch(e){}}
+  show(start,false);
+  if(h==='print'){parts.forEach(function(s){s.hidden=false;}); openAll();}
+  window.addEventListener('beforeprint',openAll);
+})();
+</script>
+
+</body></html>
